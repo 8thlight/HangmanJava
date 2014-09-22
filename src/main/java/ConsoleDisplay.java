@@ -4,6 +4,5 @@ public class ConsoleDisplay implements GameOverDisplay {
 
     @Override
     public void GameOver() {
-
     }
 }
