@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class HangmanGame implements Game{
+public class HangmanGame extends Observable implements Game {
     public static int MaxGuesses = 5;
     private List<Character> answer;
     private List<Character> guesses;
@@ -22,6 +23,8 @@ public class HangmanGame implements Game{
     public void Guess(char guess)
     {
         guesses.add(Character.toLowerCase(guess));
+        setChanged();
+        notifyObservers();
     }
 
     @Override

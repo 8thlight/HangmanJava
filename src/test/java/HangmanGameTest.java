@@ -1,15 +1,27 @@
 import java.util.Arrays;
+import java.util.Observable;
+import java.util.Observer;
+
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class HangmanGameTest {
+public class HangmanGameTest implements Observer {
+
+    private Observable observedObject;
+    private SimpleAnswerGenerator simpleAnswerGenerator;
+    private HangmanGame game;
+
+    @Before
+    public void setUp() {
+        simpleAnswerGenerator = new SimpleAnswerGenerator();
+        game = new HangmanGame();
+        observedObject = null;
+    }
 
     @Test
     public void ItIsNotOverWhenTheMaxGuessesAreNotUsedYet() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("ab");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         for(int i=0; i < HangmanGame.MaxGuesses; i++) {
@@ -20,10 +32,7 @@ public class HangmanGameTest {
 
     @Test
     public void ItIsOverWhenTheMaxGuessesAreUsed() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("ab");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         for(int i=0; i < HangmanGame.MaxGuesses; i++) {
@@ -35,10 +44,7 @@ public class HangmanGameTest {
 
     @Test
     public void ItIsOverWhenTheAnswerIsGuessed() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("ab");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         game.Guess('a');
@@ -49,10 +55,7 @@ public class HangmanGameTest {
 
     @Test
     public void TheAnswerCanBeGuessedInTheWrongOrder() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("ab");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         game.Guess('b');
@@ -63,10 +66,7 @@ public class HangmanGameTest {
 
     @Test
     public void TheAnswerCanBeGuessedWhenThereAreDuplicates() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("abbb");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         game.Guess('b');
@@ -77,10 +77,7 @@ public class HangmanGameTest {
 
     @Test
     public void TheCurrentClueStartsAsAListOfEmptySlots() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("eric");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         assertEquals(Arrays.asList('_', '_', '_', '_'), game.CurrentClue());
@@ -88,10 +85,7 @@ public class HangmanGameTest {
 
     @Test
     public void TheCurrentClueGetsACorrectGuess() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("eric");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         game.Guess('e');
@@ -101,10 +95,7 @@ public class HangmanGameTest {
 
     @Test
     public void TheCurrentClueCanHandleMoreThanOneCorrectGuess() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("eric");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         game.Guess('e');
@@ -115,10 +106,7 @@ public class HangmanGameTest {
 
     @Test
     public void TheCurrentClueAlsoHasRepeatingLetters() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("jimmy");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         game.Guess('m');
@@ -128,14 +116,27 @@ public class HangmanGameTest {
 
     @Test
     public void CaseIsIrrelevant() {
-        SimpleAnswerGenerator simpleAnswerGenerator = new SimpleAnswerGenerator();
         simpleAnswerGenerator.setNextAnswer("PLEASE");
-
-        HangmanGame game = new HangmanGame();
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
         game.Guess('p');
 
         assertEquals(Arrays.asList('P', '_', '_', '_', '_', '_'), game.CurrentClue());
+    }
+
+    @Test
+    public void ItSendsNotificationsOnGuesses() {
+        simpleAnswerGenerator.setNextAnswer("PLEASE");
+        game.SetAnswerGenerator(simpleAnswerGenerator);
+
+        game.addObserver(this);
+        game.Guess('c');
+
+        assertSame(observedObject, game);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        observedObject = o;
     }
 }

@@ -24,8 +24,11 @@ public class HangmanRunner {
 
     public static void main(String [] args) throws Exception {
         HangmanGame game = new HangmanGame();
+        ConsoleDisplay display = new ConsoleDisplay();
+        game.addObserver(display);
+
         HangmanRunner runner = new HangmanRunner(game,
-                new ConsoleDisplay(game),
+                display,
                 new YourPlayer(),
                 new SleepTicker());
         runner.run();
