@@ -1,11 +1,11 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class HangmanGame implements Game{
     public static int MaxGuesses = 5;
     private List<Character> answer;
     private List<Character> guesses;
+    private AnswerGenerator answerGenerator = new RandomAnswerGeneratorFromList();
 
     public HangmanGame()
     {
@@ -15,7 +15,7 @@ public class HangmanGame implements Game{
     @Override
     public boolean IsOver()
     {
-        return (guesses.size() >= MaxGuesses) || this.guesses.containsAll(this.answer);
+        return (guesses.size() >= MaxGuesses) || this.guesses.containsAll(this.Answer());
     }
 
     @Override
@@ -29,8 +29,8 @@ public class HangmanGame implements Game{
     {
         List<Character> clue = new ArrayList<Character>();
 
-        for (int i = 0; i < answer.size(); i++) {
-            Character c = answer.get(i);
+        for (int i = 0; i < Answer().size(); i++) {
+            Character c = Answer().get(i);
             if (guesses.contains(Character.toLowerCase(c)))
                 clue.add(c);
             else
@@ -40,10 +40,16 @@ public class HangmanGame implements Game{
         return clue;
     }
 
-    public void SetAnswer(String answer) {
-        this.answer = new ArrayList<Character>();
-        for (Character c : answer.toCharArray()) {
-            this.answer.add(c);
+    public void SetAnswerGenerator(AnswerGenerator answerGenerator) {
+        this.answerGenerator = answerGenerator;
+    }
+
+    protected List<Character> Answer() {
+        if (answer == null) {
+            answer = new ArrayList<Character>();
+            for (Character c : answerGenerator.generateAnswer().toCharArray())
+                answer.add(c);
         }
+        return answer;
     }
 }
