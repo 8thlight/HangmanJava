@@ -1,4 +1,6 @@
-package com.hangman;
+package com.hangman.players;
+
+import com.hangman.Player;
 
 import java.util.List;
 

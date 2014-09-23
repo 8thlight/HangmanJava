@@ -1,5 +1,7 @@
 package com.hangman;
 
+import com.hangman.players.YourPlayer;
+
 public class HangmanRunner {
 
     private GameOverDisplay display;
