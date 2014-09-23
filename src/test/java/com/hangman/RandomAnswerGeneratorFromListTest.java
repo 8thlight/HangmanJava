@@ -1,3 +1,7 @@
+package com.hangman;
+
+import com.hangman.RandomAnswerGeneratorFromList;
+import com.hangman.RandomNumberGenerator;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

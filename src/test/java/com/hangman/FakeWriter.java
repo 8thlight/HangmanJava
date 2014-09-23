@@ -1,3 +1,7 @@
+package com.hangman;
+
+import com.hangman.Writer;
+
 import java.util.ArrayList;
 import java.util.List;
 

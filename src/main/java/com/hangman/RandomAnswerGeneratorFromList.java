@@ -1,3 +1,5 @@
+package com.hangman;
+
 public class RandomAnswerGeneratorFromList implements AnswerGenerator {
     private RandomNumberGenerator generator;
 

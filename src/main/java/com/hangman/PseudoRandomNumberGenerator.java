@@ -1,3 +1,5 @@
+package com.hangman;
+
 import java.util.Random;
 
 public class PseudoRandomNumberGenerator implements RandomNumberGenerator {

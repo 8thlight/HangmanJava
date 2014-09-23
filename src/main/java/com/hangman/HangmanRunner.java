@@ -1,3 +1,5 @@
+package com.hangman;
+
 public class HangmanRunner {
 
     private GameOverDisplay display;

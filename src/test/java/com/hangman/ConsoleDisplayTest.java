@@ -1,3 +1,5 @@
+package com.hangman;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.Observable;
 
 import static org.junit.Assert.*;
 
-public class ConsoleDisplayTest extends Observable implements Game  {
+public class ConsoleDisplayTest extends Observable implements Game {
     private List<Character> currentClue;
 
     @Test
@@ -18,7 +20,7 @@ public class ConsoleDisplayTest extends Observable implements Game  {
         display.GameOver();
 
         List<String> expectedLines = new ArrayList<String>();
-        expectedLines.add("Game Over");
+        expectedLines.add("com.hangman.Game Over");
 
         assertEquals(expectedLines, writer.writtenLines());
     }

@@ -1,3 +1,7 @@
+package com.hangman;
+
+import com.hangman.Player;
+
 import java.util.LinkedList;
 import java.util.List;
 

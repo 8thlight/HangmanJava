@@ -1,3 +1,7 @@
+package com.hangman;
+
+import com.hangman.GameOverDisplay;
+
 public class FakeGameOverDisplay implements GameOverDisplay {
     private boolean gameOverDisplayed;
 

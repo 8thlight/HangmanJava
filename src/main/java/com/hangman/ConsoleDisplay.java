@@ -1,3 +1,5 @@
+package com.hangman;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -15,7 +17,7 @@ public class ConsoleDisplay implements GameOverDisplay, Observer {
 
     @Override
     public void GameOver() {
-        writer.writeLine("Game Over");
+        writer.writeLine("com.hangman.Game Over");
     }
 
     @Override
