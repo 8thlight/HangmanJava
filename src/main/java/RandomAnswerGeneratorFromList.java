@@ -392,7 +392,7 @@ public class RandomAnswerGeneratorFromList implements AnswerGenerator {
 
     @Override
     public String generateAnswer() {
-        double index = this.generator.Random() * wordList.length;
-        return wordList[0];
+        int index = (int) (this.generator.Random() * (wordList.length - 1));
+        return wordList[index];
     }
 }

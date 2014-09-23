@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Observable;
 
 public class HangmanGame extends Observable implements Game {
-    public static int MaxGuesses = 5;
+    public static int MaxGuesses = 9;
     private List<Character> answer;
     private List<Character> guesses;
     private AnswerGenerator answerGenerator = new RandomAnswerGeneratorFromList();

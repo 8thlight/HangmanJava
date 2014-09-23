@@ -23,6 +23,15 @@ public class RandomAnswerGeneratorFromListTest implements RandomNumberGenerator 
 
         RandomAnswerGeneratorFromList generator = new RandomAnswerGeneratorFromList(this);
 
-        assertEquals("aboard", generator.generateAnswer());
+        assertEquals("zoo", generator.generateAnswer());
+    }
+
+    @Test
+    public void CanRandomlySelectOneInTheMiddle()  {
+        randomNumber = 0.1;
+
+        RandomAnswerGeneratorFromList generator = new RandomAnswerGeneratorFromList(this);
+
+        assertEquals("birth", generator.generateAnswer());
     }
 }
