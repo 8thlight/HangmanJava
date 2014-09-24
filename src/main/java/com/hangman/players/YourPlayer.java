@@ -8,6 +8,8 @@ import java.util.List;
 
 public class YourPlayer implements Player {
 
+  private List<Character> lettersGuessed = new ArrayList<Character>();
+
   public List<Character> getAlphabet() {
     char[] letters = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     List<Character> alphabet = new ArrayList<Character>();
@@ -22,7 +24,11 @@ public class YourPlayer implements Player {
 
   @Override
   public char GetGuess(List<Character> clue) {
-
+    lettersGuessed.add(clue.get(0));
     return clue.get(0);
+  }
+
+  public List<Character> getGuessList() {
+    return lettersGuessed;
   }
 }
