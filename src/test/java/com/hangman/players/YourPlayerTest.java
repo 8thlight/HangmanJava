@@ -32,5 +32,17 @@ public class YourPlayerTest {
         assertEquals('t', guess2);
     }
 
+    @Test
+    public void GetNextBestGuess() throws Exception {
+        char bestGuess = player.nextBestGuess();
+
+        assertEquals('e', bestGuess);
+
+        char bestGuess2 = player.nextBestGuess();
+
+        assertEquals('t', bestGuess2);
+
+    }
+
 
 }

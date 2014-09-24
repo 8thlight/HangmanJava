@@ -28,4 +28,18 @@ public class YourPlayer implements Player {
     guesses.add(guess);
     return guess;
   }
+
+  public char nextBestGuess() {
+      int i = -1;
+
+      for (char g : guesses) {
+          if ( best.indexOf(g) > i ) {
+              i = best.indexOf(g);
+          }
+      }
+
+      guesses.add(best.get(i+1));
+
+      return best.get(i+1);
+  }
 }
