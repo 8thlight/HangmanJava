@@ -1,17 +1,14 @@
 package com.hangman.players;
 import com.hangman.Player;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class YourPlayer implements Player {
 
-  HashMap<Character, Integer> guessedCharacters;
+  List<Character> guessedCharacters;
 
   public YourPlayer() {
-      guessedCharacters = new HashMap<Character, Integer>();
+      guessedCharacters = new ArrayList<Character>();
   }
   @Override
   public char GetGuess(List<Character> clue) {
@@ -22,7 +19,12 @@ public class YourPlayer implements Player {
           if (guess == clue.get(i)) guess = randomCharacter();
       }
 
-      guessedCharacters.put(guess, 1);
+
+      for(int i=0; i < guessedCharacters.size(); i++) {
+          if (guess == guessedCharacters.get(i))
+          guess = randomCharacter();
+      }
+      guessedCharacters.add(guess);
 
       return guess;
 
