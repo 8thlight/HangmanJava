@@ -36,6 +36,20 @@ public class HangmanRunnerTest {
     }
 
     @Test
+    public void TellsYouIfGameIsAWinner() {
+        game.SetToWinner();
+
+        assertTrue(runner.isWinner());
+    }
+
+    @Test
+    public void ItGetsTheNumberOfGuessesFromTheGame() {
+        game.SetNumGuesses(3);
+
+        assertEquals(3, runner.numGuesses());
+    }
+
+    @Test
     public void ItPlaysATurnThatCanEndTheGame() throws Exception {
         game.SetLastGuess('z');
         player.SetGuesses(Arrays.asList('z'));

@@ -50,6 +50,16 @@ public class ConsoleDisplayTest extends Observable implements Game {
     }
 
     @Override
+    public boolean IsWinner() {
+        return false;
+    }
+
+    @Override
+    public int numGuesses() {
+        return 0;
+    }
+
+    @Override
     public List<Character> CurrentClue() {
         return currentClue;
     }

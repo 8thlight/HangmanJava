@@ -1,8 +1,7 @@
 package com.hangman;
-
 import com.hangman.players.YourPlayer;
 
-public class HangmanRunner {
+public class HangmanRunner implements Runner {
 
     private GameOverDisplay display;
     private Game game;
@@ -17,13 +16,24 @@ public class HangmanRunner {
         this.ticker = ticker;
     }
 
-    public void run() throws Exception {
+    @Override
+    public void run() {
         while(!game.IsOver()) {
             char guess = player.GetGuess(game.CurrentClue());
             game.Guess(guess);
             ticker.tick();
         }
         display.GameOver();
+    }
+
+    @Override
+    public boolean isWinner() {
+      return game.IsWinner();
+    }
+
+    @Override
+    public int numGuesses() {
+        return game.numGuesses();
     }
 
     public static void main(String [] args) throws Exception {

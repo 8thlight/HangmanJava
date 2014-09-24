@@ -10,6 +10,8 @@ public class FakeGame implements Game {
     private ArrayList<Character> guesses;
     private char lastGuess;
     private List<Character> clue;
+    private boolean winner;
+    private int numGuesses;
 
     public FakeGame() {
         this.done = false;
@@ -44,7 +46,23 @@ public class FakeGame implements Game {
         return clue;
     }
 
+    @Override
+    public boolean IsWinner() {
+      return winner;
+    }
+
+    @Override
+    public int numGuesses() {
+        return numGuesses;
+    }
+
+    public void SetToWinner() {winner = true;}
+
     public void SetCurrentClue(List<Character> clue) {
         this.clue = clue;
+    }
+
+    public void SetNumGuesses(int guesses) {
+        numGuesses = guesses;
     }
 }

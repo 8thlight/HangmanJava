@@ -26,7 +26,7 @@ public class HangmanGameTest implements Observer {
         simpleAnswerGenerator.setNextAnswer("ab");
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
-        for(int i=0; i < HangmanGame.MaxGuesses; i++) {
+        for(int i=0; i < HangmanGame.MaxIncorrectGuesses; i++) {
             assertFalse(game.IsOver());
             game.Guess('c');
         }
@@ -37,7 +37,7 @@ public class HangmanGameTest implements Observer {
         simpleAnswerGenerator.setNextAnswer("ab");
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
-        for(int i=0; i < HangmanGame.MaxGuesses; i++) {
+        for(int i=0; i < HangmanGame.MaxIncorrectGuesses; i++) {
             game.Guess('c');
         }
 
@@ -75,6 +75,28 @@ public class HangmanGameTest implements Observer {
         game.Guess('a');
 
         assertTrue(game.IsOver());
+    }
+
+    @Test
+    public void TheAnswerCanBeGuessedWhenTheWordHasCapitalLetters() {
+        simpleAnswerGenerator.setNextAnswer("AAbb");
+        game.SetAnswerGenerator(simpleAnswerGenerator);
+
+        game.Guess('b');
+        game.Guess('a');
+
+        assertTrue(game.IsOver());
+    }
+
+    @Test
+    public void TheGameCanTellYouIfYouAreAWinner() {
+        simpleAnswerGenerator.setNextAnswer("AAbb");
+        game.SetAnswerGenerator(simpleAnswerGenerator);
+
+        game.Guess('b');
+        game.Guess('a');
+
+        assertTrue(game.IsWinner());
     }
 
     @Test
@@ -123,7 +145,7 @@ public class HangmanGameTest implements Observer {
 
         game.Guess('p');
 
-        assertEquals(Arrays.asList('P', '_', '_', '_', '_', '_'), game.CurrentClue());
+        assertEquals(Arrays.asList('p', '_', '_', '_', '_', '_'), game.CurrentClue());
     }
 
     @Test
@@ -135,6 +157,61 @@ public class HangmanGameTest implements Observer {
         game.Guess('c');
 
         assertSame(observedObject, game);
+    }
+
+    @Test
+    public void ItReturnsTheGuessCount() {
+        simpleAnswerGenerator.setNextAnswer("PLEASE");
+        game.SetAnswerGenerator(simpleAnswerGenerator);
+
+        game.Guess('c');
+        game.Guess('p');
+
+        assertEquals(2, game.numGuesses());
+    }
+
+    @Test
+    public void ItIsAbleToGuessAWordLongerThanMaxGuesses() {
+        String longWord = "";
+
+        for (int i = 0; i <= HangmanGame.MaxIncorrectGuesses; i++) {
+            char nextChar = (char) ('a' + i);
+            longWord += nextChar;
+        }
+
+        simpleAnswerGenerator.setNextAnswer(longWord);
+        game.SetAnswerGenerator(simpleAnswerGenerator);
+
+        for (int i = 0; i < HangmanGame.MaxIncorrectGuesses; i++) {
+            game.Guess((char) ('a' + i));
+        }
+
+        assertFalse(game.IsOver());
+        game.Guess((char) ('a' + HangmanGame.MaxIncorrectGuesses));
+
+        assertTrue(game.IsOver());
+    }
+
+    @Test
+    public void ItCountsAlreadyGuessedValuesAsWrongGuesses() {
+        String longWord = "";
+
+        for (int i = 0; i <= HangmanGame.MaxIncorrectGuesses; i++) {
+            char nextChar = (char) ('a' + i);
+            longWord += nextChar;
+        }
+
+        simpleAnswerGenerator.setNextAnswer(longWord);
+        game.SetAnswerGenerator(simpleAnswerGenerator);
+
+        for (int i = 0; i < HangmanGame.MaxIncorrectGuesses; i++) {
+            game.Guess('a');
+        }
+
+        assertFalse(game.IsOver());
+        game.Guess('a');
+
+        assertTrue(game.IsOver());
     }
 
     @Override
