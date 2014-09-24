@@ -24,4 +24,18 @@ public class YourPlayerTest {
     guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
     assertEquals('b', guess);
   }
+
+  @Test
+  public void AlwaysGuessAThenBThenC() {
+    YourPlayer player = new YourPlayer();
+
+    char guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
+    assertEquals('a', guess);
+
+    guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
+    assertEquals('b', guess);
+
+    guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
+    assertEquals('c', guess);
+  }
 }

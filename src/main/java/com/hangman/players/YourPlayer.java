@@ -4,23 +4,22 @@ import com.hangman.Player;
 import java.util.*;
 
 public class YourPlayer implements Player {
-  private boolean isFirstTime = true;
-  private ArrayList<Character> _clue;
-
-  private void init(List<Character> clue) {
-    _clue = new ArrayList<Character>(clue);
-  }
+  private int _intA = 97;
+  private int _counter = 0;
+  private Set<Character> _set = new HashSet<Character>();
 
   @Override
   public char GetGuess(List<Character> clue) {
-    if (isFirstTime) {
-      init(clue);
-      isFirstTime = false;
+
+    char[] chars = Character.toChars(_intA + _counter++);
+    Character c = chars[0];
+    while (_set.contains(c)) {
+      chars = Character.toChars(_intA + _counter++);
+      c = chars[0];
     }
 
-    Character c = _clue.get(0);
-    _clue.remove(0);
-
+    _set.add(c);
+    //System.out.println("**" + c);
     return c;
   }
 }
