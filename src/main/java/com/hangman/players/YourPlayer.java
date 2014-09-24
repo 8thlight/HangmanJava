@@ -16,17 +16,7 @@ public class YourPlayer implements Player {
 
   @Override
   public char GetGuess(List<Character> clue) {
-    char guess = 'e';
-
-    for (char g: guesses) {
-        if (g == 'e') {
-             guess = 't';
-            break;
-        }
-    }
-
-    guesses.add(guess);
-    return guess;
+    return nextBestGuess();
   }
 
   public char nextBestGuess() {
