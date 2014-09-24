@@ -2,15 +2,29 @@ package com.hangman.players;
 
 import org.junit.Test;
 import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class YourPlayerTest {
-    @Test
-    public void AlwaysGuessA() {
-        YourPlayer player = new YourPlayer();
 
-        char guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
 
-        assertEquals('a', guess);
-    }
+  @Test
+  public void TestMakeAlphaBet() {
+    YourPlayer player = new YourPlayer();
+
+    List<Character> alphabet = player.getAlphabet();
+    assertEquals(26, alphabet.size());
+
+  }
+
+  @Test
+  public void GuessFirstLetterInArray() {
+    YourPlayer player = new YourPlayer();
+
+    List<Character> alphabet = player.getAlphabet();
+    char guess = player.GetGuess(alphabet);
+    assertEquals('a', guess);
+
+  }
 }
