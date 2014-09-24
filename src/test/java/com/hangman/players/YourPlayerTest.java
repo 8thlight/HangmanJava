@@ -7,16 +7,16 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
 public class YourPlayerTest {
-    @Test
+
     public void AlwaysGuessA() {
         YourPlayer player = new YourPlayer();
 
-      char guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
+      char guess = player.GetGuess(Arrays.asList('b','c','r','s','t','l','n','e'));
 
         assertEquals('a', guess);
     }
 
-  @Test
+  //@Test
   public void GuessAThenB() {
     YourPlayer player = new YourPlayer();
     char guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
@@ -25,17 +25,21 @@ public class YourPlayerTest {
     assertEquals('b', guess);
   }
 
-  //not Testing yet
+  @Test
   public void goodLetters(){
     YourPlayer player = new YourPlayer();
 
-    char guess = player.GetGuess(Arrays.asList('r','s','t','l','n','e'));
-
+    char guess = player.GetGuess(Arrays.asList('_'));
     assertEquals('r', guess);
+    guess = player.GetGuess(Arrays.asList('_'));
     assertEquals('s', guess);
+    guess = player.GetGuess(Arrays.asList('_'));
     assertEquals('t', guess);
+    guess = player.GetGuess(Arrays.asList('_'));
     assertEquals('l', guess);
+    guess = player.GetGuess(Arrays.asList('_'));
     assertEquals('n', guess);
+    guess = player.GetGuess(Arrays.asList('_'));
     assertEquals('e', guess);
   }
 }

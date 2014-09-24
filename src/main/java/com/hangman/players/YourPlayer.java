@@ -24,7 +24,35 @@ public class YourPlayer implements Player {
   public char GetGuess(List<Character> clue) {
     //clue is where you are currently at in the game
 
-    char letterGuess = alphabet.remove(0);
+    int indexOfLetter = 0;
+
+    for(Character currentChar : clue){
+      if(alphabet.contains(currentChar)){
+        alphabet.remove(alphabet.indexOf(currentChar));
+      }
+    }
+
+    if(alphabet.contains('r'))
+      indexOfLetter = (alphabet.indexOf('r'));
+    else if(alphabet.contains('s'))
+      indexOfLetter = (alphabet.indexOf('s'));
+    else if(alphabet.contains('t'))
+      indexOfLetter = (alphabet.indexOf('t'));
+    else if(alphabet.contains('l'))
+      indexOfLetter = (alphabet.indexOf('l'));
+    else if(alphabet.contains('n'))
+      indexOfLetter = (alphabet.indexOf('n'));
+    else if(alphabet.contains('e'))
+      indexOfLetter = (alphabet.indexOf('e'));
+    else if(alphabet.contains('a'))
+      indexOfLetter = (alphabet.indexOf('a'));
+    else if(alphabet.contains('i'))
+      indexOfLetter = (alphabet.indexOf('i'));
+    else if(alphabet.contains('o'))
+      indexOfLetter = (alphabet.indexOf('o'));
+    else if(alphabet.contains('u'))
+      indexOfLetter = (alphabet.indexOf('u'));
+    char letterGuess = alphabet.remove(indexOfLetter);
 
     return letterGuess;
   }
