@@ -36,7 +36,7 @@ public class YourPlayerTest {
     }
 
     @Test
-    public void constructorOfYourPlayerTest() throws Exception {
+    public void constructorGeneratesCorrectList() throws Exception {
         LinkedList<Character> characters = new LinkedList<Character>();
         final String mostCommonLetters = "etaoinshrdlu";
 
@@ -45,7 +45,7 @@ public class YourPlayerTest {
 
         YourPlayer player = new YourPlayer(characters);
 
-        assertEquals(12, player.getGuesses().size());
+        assertEquals(mostCommonLetters.length(), player.getGuesses().size());
     }
 
 }
