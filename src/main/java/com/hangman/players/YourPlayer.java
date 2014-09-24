@@ -1,10 +1,7 @@
 package com.hangman.players;
 import com.hangman.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class YourPlayer implements Player {
 
@@ -30,5 +27,13 @@ public class YourPlayer implements Player {
 
   public List<Character> getGuessList() {
     return lettersGuessed;
+  }
+
+  public List<Character> shuffleAlphabet() {
+    long seed = System.currentTimeMillis();
+    List<Character> shuffled = getAlphabet();
+    Collections.shuffle(shuffled, new Random(seed));
+
+    return shuffled;
   }
 }

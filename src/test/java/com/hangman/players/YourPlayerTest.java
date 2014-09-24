@@ -3,9 +3,12 @@ package com.hangman.players;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class YourPlayerTest {
   YourPlayer player;
@@ -33,7 +36,14 @@ public class YourPlayerTest {
     player.GetGuess(alphabet);
 
     List<Character> lettersGuessed = player.getGuessList();
-    char guessed = lettersGuessed.get(0);
-    assertEquals('a', guessed);
+    assertEquals('a', (char)lettersGuessed.get(0));
+  }
+
+  @Test
+  public void TestShuffledAlphabet() throws Exception {
+    List<Character> shuffled = player.shuffleAlphabet();
+    
+    assertEquals(26, shuffled.size());
+    assertNotEquals(shuffled, alphabet);
   }
 }
