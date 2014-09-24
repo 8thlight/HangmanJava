@@ -7,29 +7,31 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class YourPlayer implements Player {
-  List<Character> guesses;
-  List<Character> best = Arrays.asList('e', 't', 'a', 'o', 'i', 'n', 's', 'h', 'r');
+    List<Character> guesses;
+    List<Character> best = Arrays.asList('e', 't', 'a', 'o', 'i', 'n', 's', 'h', 'r');
 
-  public YourPlayer() {
+    public YourPlayer() {
       guesses = new ArrayList<Character>();
-  }
+    }
 
-  @Override
-  public char GetGuess(List<Character> clue) {
-    return nextBestGuess();
-  }
+    @Override
+    public char GetGuess(List<Character> clue) {
+        return nextBestGuess();
+    }
 
-  public char nextBestGuess() {
-      int i = -1;
+    public char nextBestGuess() {
+        int i = -1;
+        int b;
 
-      for (char g : guesses) {
-          if ( best.indexOf(g) > i ) {
-              i = best.indexOf(g);
-          }
-      }
+        for (char g : guesses) {
+            b = best.indexOf(g);
+            if ( b > i ) {
+                i = b;
+            }
+        }
 
-      guesses.add(best.get(i+1));
+        guesses.add(best.get(i+1));
 
-      return best.get(i+1);
-  }
+        return best.get(i+1);
+    }
 }
