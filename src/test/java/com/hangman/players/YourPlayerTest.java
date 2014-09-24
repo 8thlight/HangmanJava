@@ -3,6 +3,7 @@ package com.hangman.players;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +11,7 @@ public class YourPlayerTest {
     @Test
     public void alwaysGuessA() {
         YourPlayer player = new YourPlayer();
-        player.SetGuesses(Arrays.asList('a', 'b', 'c'));
+        player.setGuesses(Arrays.asList('a', 'b', 'c'));
         char guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
 
         assertEquals('a', guess);
@@ -19,9 +20,18 @@ public class YourPlayerTest {
     @Test
     public void setsAllGuessed() throws Exception {
         YourPlayer player = new YourPlayer();
-        player.SetGuesses(Arrays.asList('a', 'b', 'c'));
+        player.setGuesses(Arrays.asList('a', 'b', 'c'));
+        player.GetGuess(Arrays.asList('a', 'b', 'c'));
 
-        assertEquals(Arrays.asList('a', 'b', 'c'), player.GetLatestClue());
+        assertEquals(Arrays.asList('a', 'b', 'c'), player.getLatestClue());
+    }
+
+    @Test
+    public void generate9RandomCharacters() throws Exception {
+        YourPlayer player = new YourPlayer();
+        LinkedList<Character> characters = player.generateRandomCharacters(9);
+
+        assertEquals(9, characters.size());
     }
 
 }
