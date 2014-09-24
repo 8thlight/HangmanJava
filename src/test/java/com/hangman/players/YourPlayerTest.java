@@ -9,14 +9,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class YourPlayerTest {
-    @Test
-    public void AlwaysGuessA() {
-        YourPlayer player = new YourPlayer();
-
-        char guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
-
-        assertEquals('a', guess);
-    }
+//    @Test
+//    public void AlwaysGuessA() {
+//        YourPlayer player = new YourPlayer();
+//
+//        char guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
+//
+//        assertEquals('a', guess);
+//    }
 
     @Test
     public void GetsNewGuessEachTime() throws Exception {
@@ -33,7 +33,7 @@ public class YourPlayerTest {
             guess = player.GetGuess(wordSoFar);
 
             for (Character inList : wordSoFar) {
-                //System.out.println("Guess: " + (new Character(guess).toString()) + ", curchar: " + inList.toString());
+
                 assertTrue(inList.charValue() != guess);
             }
 
