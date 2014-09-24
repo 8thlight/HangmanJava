@@ -28,10 +28,24 @@ public class YourPlayerTest {
 
     @Test
     public void generate9RandomCharacters() throws Exception {
+        LinkedList<Character> characters;
         YourPlayer player = new YourPlayer();
-        LinkedList<Character> characters = player.generateRandomCharacters(9);
+        characters = player.generateRandomCharacters(9);
 
         assertEquals(9, characters.size());
+    }
+
+    @Test
+    public void constructorOfYourPlayerTest() throws Exception {
+        LinkedList<Character> characters = new LinkedList<Character>();
+        final String mostCommonLetters = "etaoinshrdlu";
+
+        for (int i = 0; i < mostCommonLetters.length(); i++)
+            characters.add(mostCommonLetters.charAt(i));
+
+        YourPlayer player = new YourPlayer(characters);
+
+        assertEquals(12, player.getGuesses().size());
     }
 
 }

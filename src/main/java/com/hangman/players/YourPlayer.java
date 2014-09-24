@@ -11,7 +11,10 @@ public class YourPlayer implements Player {
     private List<Character> latestClue;
 
     public YourPlayer() {
-        guesses = generateRandomCharacters(9);
+        this.guesses = new LinkedList<Character>();
+        final String mostCommonLetters = "etaoinshrdlu";
+        for (int i = 0; i < mostCommonLetters.length(); i++)
+            guesses.add(mostCommonLetters.charAt(i));
     }
 
     public YourPlayer(LinkedList<Character> guesses) {
@@ -26,6 +29,10 @@ public class YourPlayer implements Player {
         for(char guess : chars) {
             this.guesses.add(guess);
         }
+    }
+
+    public LinkedList<Character> getGuesses() {
+        return guesses;
     }
 
     @Override
