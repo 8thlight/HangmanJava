@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,6 +22,7 @@ public class YourPlayerTest {
     public void GetsNewGuessEachTime() throws Exception {
         YourPlayer player = new YourPlayer();
         ArrayList<Character> wordSoFar = new ArrayList<Character>();
+
         for (int xctr = 0; xctr < 26; xctr++) {
             wordSoFar.add(new Character('_'));
         }
@@ -33,16 +33,18 @@ public class YourPlayerTest {
             guess = player.GetGuess(wordSoFar);
 
             for (Character inList : wordSoFar) {
+                //System.out.println("Guess: " + (new Character(guess).toString()) + ", curchar: " + inList.toString());
                 assertTrue(inList.charValue() != guess);
+            }
+
+            for (int yctr = 0; yctr < 26; yctr++) {
+                Character theChar = wordSoFar.get(yctr);
+                if (theChar.charValue() == '_') {
+                    wordSoFar.set(yctr, guess);
+                    break;
+                }
             }
         }
 
-        for (int xctr = 0; xctr < 26; xctr++) {
-            Character theChar = wordSoFar.get(xctr);
-            if (theChar.charValue() == '_') {
-                wordSoFar.set(xctr, guess);
-                break;
-            }
-        }
     }
 }
