@@ -15,7 +15,7 @@ public class ConsoleDisplay implements GameOverDisplay, Observer {
     }
 
 
-    @Override
+   @Override
     public void GameOver() {
         writer.writeLine("com.hangman.Game Over");
     }
