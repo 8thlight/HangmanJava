@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class YourPlayerTest {
 
@@ -48,12 +46,43 @@ public class YourPlayerTest {
   }
 
   @Test
+  public void shouldReturnCorrectWordLength() {
+    player.buildGuessed(Arrays.asList('_','_','a'));
+    assertEquals(3, player.getWordLength());
+  }
+
+  @Test
+  public void tracksUnknownClue() {
+    player.buildGuessed(Arrays.asList('_','_','a'));
+    assertEquals(2, player.getUnknown());
+  }
+
+  @Test
   public void shouldGetCharacterNotGuessed() {
     player.GetGuess(Arrays.asList('_'));
 
     Character c = player.gimmeACharacter();
 
+    assertFalse(c == '!');
+
     assertNotNull(c);
+  }
+
+  @Test
+  public void shouldReturnVowelsGuessed() {
+    player.GetGuess(Arrays.asList('_', 'a', 'e'));
+
+    assertEquals(2, player.getVowelsGuessed());
+  }
+
+  @Test
+  public void shouldMarkCharacterAsGuessed() {
+
+    assertEquals(-1, player.getGuessed().indexOf('a'));
+    player.markCharacterAsGuessed('a');
+    assertFalse(player.getGuessed().indexOf('a') == -1);
+
+
   }
 
   @Test

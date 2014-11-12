@@ -7,6 +7,9 @@ public class YourPlayer implements Player {
 
   public List<Character> guessed = new ArrayList<Character>();
   private ArrayList<Character> availableCharacters = new ArrayList<Character>();
+  private int wordLength = 0;
+  private int unknown = 0;
+  private List<Character> vowels = Arrays.asList('a', 'e', 'i', 'o', 'u');
 
   public YourPlayer() {
     String str = "abcdefghijklmnopqrstuvwxyz";
@@ -16,9 +19,26 @@ public class YourPlayer implements Player {
     }
   }
 
+  public int getVowelsGuessed() {
+    int count = 0;
+
+    for(Character v: vowels) {
+      if (guessed.indexOf(v) != -1)
+        count++;
+    }
+
+    return count;
+  }
+
   public void buildGuessed(List<Character> clue) {
+    wordLength = clue.size();
+
     for (Character c : clue) {
-      if (!c.equals('_') && guessed.indexOf(c) == -1) {
+      if (c.equals('_')) {
+        unknown++;
+        continue;
+      }
+      if (guessed.indexOf(c) == -1) {
         guessed.add(c);
       }
     }
@@ -28,19 +48,40 @@ public class YourPlayer implements Player {
     return guessed;
   }
 
-  public Character gimmeACharacter() {
-    if (availableCharacters.size() < 1)
-      return 'a';
+  public Character getRandomCharacter() {
+    Character c = availableCharacters.remove(randInt());
+    return c;
+  }
 
-    Character c = availableCharacters.remove( randInt() );
+  public Character getRandomVowel() {
+    return 'a';
+  }
 
-    while (availableCharacters.size() > 0 && guessed.indexOf(c) != -1) {
-      c = availableCharacters.remove( randInt() );
-    }
-
+  public void markCharacterAsGuessed(Character c) {
     guessed.add(c);
+  }
+
+  public boolean hasMore() {
+    return availableCharacters.size() > 0;
+  }
+
+  public Character gimmeACharacter() {
+    if (!hasMore())
+      return '!';
+
+    Character c;
+
+    do {
+      c = getRandomCharacter();
+    } while (isGuessed(c) && hasMore() );
+
+    markCharacterAsGuessed(c);
 
     return c;
+  }
+
+  public boolean isGuessed(Character c) {
+    return guessed.indexOf(c) != -1;
   }
 
 
@@ -63,4 +104,13 @@ public class YourPlayer implements Player {
     Random random = new Random();
     return (random.nextInt(max - min + 1) + min);
   }
+
+  public int getWordLength() {
+    return wordLength;
+  }
+
+  public int getUnknown() {
+    return unknown;
+  }
+
 }
