@@ -5,9 +5,25 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import java.util.Random;
+
 public class YourPlayer implements Player {
-  @Override
+  //@Override
+	
+  char c;
+  String clues = "";
+	
   public char GetGuess(List<Character> clue) {
-    return 'a';
+	
+	Random r = new Random();
+	c = (char)(r.nextInt(26) + 'a');
+	
+	while(clues.contains("" + c)) {
+		c = (char)(r.nextInt(26) + 'a');
+	}
+
+	clues += c;
+	
+	return c;
   }
 }

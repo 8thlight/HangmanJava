@@ -1,7 +1,7 @@
 package com.hangman;
 
 public class ConsoleWriter implements Writer {
-    @Override
+    //@Override
     public void writeLine(String line) {
         System.out.println(line);
     }
