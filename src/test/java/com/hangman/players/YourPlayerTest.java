@@ -56,6 +56,19 @@ public class YourPlayerTest {
     assertNotNull(c);
   }
 
+  @Test
+  public void realGuess() {
+    player.buildGuessed(Arrays.asList('_'));
+
+    List<Character> cs = player.getGuessed();
+    assertEquals(0, cs.size());
+
+    Character c = player.gimmeACharacter();
+
+    cs = player.getGuessed();
+    assertEquals(cs.size(), 1);
+  }
+
 //  @Test
 //  public void AlwaysGuessA() {
 //    YourPlayer player = new YourPlayer();

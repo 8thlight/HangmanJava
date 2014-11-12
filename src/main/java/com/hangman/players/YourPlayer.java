@@ -43,7 +43,7 @@ public class YourPlayer implements Player {
     return c;
   }
 
-  
+
   @Override
   public char GetGuess(List<Character> clue) {
     buildGuessed(clue);
@@ -56,7 +56,7 @@ public class YourPlayer implements Player {
     int min = 1;
     int max = availableCharacters.size();
 
-    return rand(min, max);
+    return rand(min, max) - 1;
   }
 
   public int rand(int min, int max) {
