@@ -17,13 +17,11 @@ public class HangmanGame extends Observable implements Game {
         incorrectGuesses = 0;
     }
 
-    @Override
     public boolean IsOver()
     {
         return incorrectGuesses >= MaxIncorrectGuesses || IsWinner();
     }
 
-    @Override
     public void Guess(char guess)
     {
         if (isIncorrect(guess))
@@ -35,7 +33,6 @@ public class HangmanGame extends Observable implements Game {
         notifyObservers();
     }
 
-    @Override
     public List<Character> CurrentClue()
     {
         List<Character> clue = new ArrayList<Character>();
@@ -51,13 +48,11 @@ public class HangmanGame extends Observable implements Game {
         return clue;
     }
 
-    @Override
     public boolean IsWinner()
     {
       return correctGuesses.containsAll(this.Answer());
     }
 
-    @Override
     public int numGuesses() {
         return incorrectGuesses + correctGuesses.size();
     }

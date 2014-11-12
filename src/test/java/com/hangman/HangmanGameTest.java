@@ -214,7 +214,6 @@ public class HangmanGameTest implements Observer {
         assertTrue(game.IsOver());
     }
 
-    @Override
     public void update(Observable o, Object arg) {
         observedObject = o;
     }

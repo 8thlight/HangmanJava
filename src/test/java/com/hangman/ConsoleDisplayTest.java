@@ -39,27 +39,22 @@ public class ConsoleDisplayTest extends Observable implements Game {
         assertEquals(expectedLines, writer.writtenLines());
     }
 
-    @Override
     public boolean IsOver() {
         return false;
     }
 
-    @Override
     public void Guess(char guess) {
 
     }
 
-    @Override
     public boolean IsWinner() {
         return false;
     }
 
-    @Override
     public int numGuesses() {
         return 0;
     }
 
-    @Override
     public List<Character> CurrentClue() {
         return currentClue;
     }

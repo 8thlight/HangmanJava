@@ -14,7 +14,6 @@ public class RandomAnswerGeneratorFromList implements AnswerGenerator {
         this(new PseudoRandomNumberGenerator());
     }
 
-    @Override
     public String generateAnswer() {
         int index = (int) (this.generator.Random() * (WordList.words.length - 1));
         return WordList.words[index];

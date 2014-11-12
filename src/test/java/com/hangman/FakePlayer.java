@@ -20,7 +20,6 @@ public class FakePlayer implements Player {
         }
     }
 
-    @Override
     public char GetGuess(List<Character> clue) {
         latestClue = clue;
         if (guesses.size() > 0)
