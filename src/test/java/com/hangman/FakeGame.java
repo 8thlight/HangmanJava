@@ -34,24 +34,22 @@ public class FakeGame implements Game {
         return guesses;
     }
 
-    @Override
     public void Guess(char guess) {
         guesses.add(guess);
         if (guess == lastGuess)
             SetDone();
     }
 
-    @Override
+
     public List<Character> CurrentClue() {
         return clue;
     }
-
-    @Override
+  
     public boolean IsWinner() {
       return winner;
     }
 
-    @Override
+  
     public int numGuesses() {
         return numGuesses;
     }

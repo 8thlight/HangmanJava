@@ -4,10 +4,34 @@ import com.hangman.Player;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class YourPlayer implements Player {
-  @Override
+	
+	private List<Character> MyGuessList;
+	private int GuessListIndex = 0;
+	
+	
   public char GetGuess(List<Character> clue) {
-    return 'a';
+	 
+	 this.MyGuessList = clue; 
+
+     int randomNum = (int) (Math.random() * clue.size());
+	 
+     return MyGuessList .get(randomNum);
+     
   }
+
+	public List<Character> GuessList() {
+		return this.MyGuessList;
+	}
+	
+	public char nextGuess(){
+		
+		GuessListIndex++; 
+		return MyGuessList .get(GuessListIndex);
+	}
+	
+  
+  
 }
