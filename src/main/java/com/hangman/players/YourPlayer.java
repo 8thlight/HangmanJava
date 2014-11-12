@@ -21,6 +21,10 @@ public class YourPlayer implements Player {
       index = 0;
       hasOneRightGuess = false;
       words = WordList.words.clone();
+      for (int i=0; i < words.length; i++) {
+          words[i] = words[i].toLowerCase();
+      }
+
   }
 
   public static List<String> getWordMatchingLength(String[] words, int length) {
@@ -53,6 +57,7 @@ public class YourPlayer implements Player {
           List<String> wordList = YourPlayer.getWordMatchingLength(words,clue.size());
           words = new String[wordList.size()];
           words = wordList.toArray(words);
+
 
 
           wordList = YourPlayer.getWordMatchingPattern(words,clue);
