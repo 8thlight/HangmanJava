@@ -1,6 +1,6 @@
 package com.hangman.players;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
@@ -29,6 +29,17 @@ public class YourPlayerTest {
 
         guess = player.GetGuess(Arrays.asList('_', '_', 't'));
         assertEquals('a', guess);
+    }
+    
+    @Test
+    public void CanSetGetWordList() {
+        YourPlayer player = new YourPlayer();
+
+        String[] words = {"one", "two", "three"};
+        player.setWordList(words);
+
+        assertArrayEquals(words,player.getWordList());
+
     }
  
 }
