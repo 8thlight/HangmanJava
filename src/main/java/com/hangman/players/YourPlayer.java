@@ -14,11 +14,11 @@ public class YourPlayer implements Player {
   @Override
   public char GetGuess(List<Character> clue) {
 
-      List<Character> charsList = Arrays.asList('a', 'b', 'c', 'd', 'e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+      List<Character> charsList = Arrays.asList('a', 'e', 'i', 'o', 'u', 'r', 's', 't', 'l', 'n','m','n','p', 'b', 'c', 'd','f','g','h','j','k','l','q','v','w','x','y','z');
 
 
       for(Character letter: charsList) {
-          if(clue.contains(letter)) {
+          if(!guessed.contains(letter)) {
 
               guessed.add(letter);
               count++;
