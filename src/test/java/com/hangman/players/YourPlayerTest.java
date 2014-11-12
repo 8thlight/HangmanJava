@@ -1,13 +1,10 @@
 package com.hangman.players;
 
-import com.hangman.WordList;
-import junit.framework.Assert;
 import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -70,7 +67,8 @@ public class YourPlayerTest {
     public void testCanGetTheMostFrequentAppearingCharInWordList() throws Exception {
 
         String[] words = {"aboard", "actual", "active"};
-        char mostFrequent = YourPlayer.getMostFrequentChar(words);
+
+        char mostFrequent = YourPlayer.getMostFrequentChar(words, Arrays.asList('f', 'u', 't'));
         assertEquals('a', mostFrequent);
     }
 }

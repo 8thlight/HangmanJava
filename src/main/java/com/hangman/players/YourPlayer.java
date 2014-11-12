@@ -76,7 +76,7 @@ public class YourPlayer implements Player {
 
 
          if(words.length > 0 ) {
-              lastCharGuessed = getMostFrequentChar(words);
+              lastCharGuessed = getMostFrequentChar(words, attemptedCharacters);
           }
           else{
               while(attemptedCharacters.contains(frequentUsedChars[index])){
@@ -131,7 +131,7 @@ public class YourPlayer implements Player {
         return hasOneRightGuess;
     }
 
-    public static char getMostFrequentChar(String[] words) {
+    public static char getMostFrequentChar(String[] words, List<Character> attemptedCharacters) {
         Map<Character,Integer> counter = new HashMap<Character, Integer>();
 
         for(String word : words) {
@@ -154,8 +154,10 @@ public class YourPlayer implements Player {
         int highest_count = 0;
         for(Character character: counter.keySet()) {
             if(counter.get(character) > highest_count ) {
-                highest = character;
-                highest_count = counter.get(character);
+                if(attemptedCharacters.indexOf(character) == -1 ) {
+                    highest = character;
+                    highest_count = counter.get(character);
+                }
             }
         }
         return highest;
