@@ -15,12 +15,12 @@ public class ConsoleDisplay implements GameOverDisplay, Observer {
     }
 
 
-    @Override
+    //@Override
     public void GameOver() {
         writer.writeLine("com.hangman.Game Over");
     }
 
-    @Override
+    //@Override
     public void update(Observable o, Object arg) {
         Game game = (Game) o;
         String clueAsString = "";

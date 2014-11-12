@@ -16,7 +16,7 @@ public class HangmanRunner implements Runner {
         this.ticker = ticker;
     }
 
-    @Override
+    //@Override
     public void run() {
         while(!game.IsOver()) {
             char guess = player.GetGuess(game.CurrentClue());
@@ -26,12 +26,12 @@ public class HangmanRunner implements Runner {
         display.GameOver();
     }
 
-    @Override
+    //@Override
     public boolean isWinner() {
       return game.IsWinner();
     }
 
-    @Override
+    //@Override
     public int numGuesses() {
         return game.numGuesses();
     }

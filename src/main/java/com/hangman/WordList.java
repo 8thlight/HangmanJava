@@ -3,7 +3,7 @@ package com.hangman;
 public class WordList {
 
   public static final String words[] = {
-            "aboard",
+	  		"aboard",
             "accept",
             "accident",
             "accurate",
