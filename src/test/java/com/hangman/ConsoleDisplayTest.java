@@ -39,7 +39,7 @@ public class ConsoleDisplayTest extends Observable implements Game {
         assertEquals(expectedLines, writer.writtenLines());
     }
 
-    @Override
+    //@Override
     public boolean IsOver() {
         return false;
     }
