@@ -28,8 +28,6 @@ public class YourPlayer implements Player {
 			if(myGuesses.contains(c) || c.equals("_")) {
 				myLetters.remove(c);
 			}
-			if(!c.equals('_'))
-				myGuesses.add(c);
 		}
 		
 		toReturn = myLetters.get(0);
