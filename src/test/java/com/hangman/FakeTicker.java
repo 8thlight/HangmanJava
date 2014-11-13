@@ -9,7 +9,6 @@ public class FakeTicker implements Ticker {
         return tickCount;
     }
 
-    @Override
     public void tick() {
         tickCount++;
     }

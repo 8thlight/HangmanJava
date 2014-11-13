@@ -11,7 +11,6 @@ public class SimpleAnswerGenerator implements AnswerGenerator
         this.nextAnswer = nextAnswer;
     }
 
-    @Override
     public String generateAnswer() {
         return nextAnswer;
     }
