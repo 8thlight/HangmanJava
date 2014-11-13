@@ -14,26 +14,39 @@ public class YourPlayer implements Player {
 		if (charGuessed.isEmpty()) {
 			charGuessed.add(guess);
 		}
-		else if (!clue.contains(vowels)) {
-			for (int i = 0; i < vowels.length; i++) {
-				if (!charGuessed.contains(vowels[i])) {
-					guess = vowels[i];
-					charGuessed.add(guess);
-					break;
+		else {
+			boolean empty = true;
+			for (int i = 0; i < clue.size(); i++) {
+				if (clue.get(i) != '_') {
+					empty = false;
 				}
 			}
-		}
-		else {
-			for (int i = 0; i < WordList.words.length; i++) {
-				String word = WordList.words[i];
-				int length = word.length();
-				if (clue.size() == length) {
-					for (int j = 0; j < length; j++) {
-						if (clue.get(j) == '_') {
-							guess = word.charAt(j);
-							charGuessed.add(guess);
-							break;
+			if (empty) {
+				for (int i = 0; i < vowels.length; i++) {
+					if (!charGuessed.contains(vowels[i])) {
+						guess = vowels[i];
+						charGuessed.add(guess);
+						break;
+					}
+				}
+			}
+			else {
+				boolean found = false;
+				for (int i = 0; i < WordList.words.length; i++) {
+					String word = WordList.words[i];
+					int length = word.length();
+					if (clue.size() == length) {
+						for (int j = 0; j < length; j++) {
+							if (clue.get(j) == '_' && !charGuessed.contains(word.charAt(j))) {
+								guess = word.charAt(j);
+								charGuessed.add(guess);
+								found = true;
+								break;
+							}
 						}
+					}
+					if (found) {
+						break;
 					}
 				}
 			}
