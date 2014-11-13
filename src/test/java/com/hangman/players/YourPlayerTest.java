@@ -23,7 +23,7 @@ public class YourPlayerTest {
 		ArrayList<Character> testGuess = new ArrayList<Character>();
 		testGuess.add('a');
 		
-		char guess = player.GetGuess(Arrays.asList('a'));
+		char guess = player.GetGuess(Arrays.asList('a','_'));
 		
 		assertEquals(testGuess, player.getPreviousGuesses());
 	}
