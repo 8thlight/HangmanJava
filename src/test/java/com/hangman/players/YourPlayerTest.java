@@ -1,16 +1,48 @@
 package com.hangman.players;
 
+import org.junit.Before;
 import org.junit.Test;
 import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
 public class YourPlayerTest {
-    @Test
-    public void AlwaysGuessA() {
-        YourPlayer player = new YourPlayer();
+    private YourPlayer player;
 
+    @Before
+    public void setup() {
+        player = new YourPlayer();
+    }
+
+    @Test
+    public void AlwaysGuessE() {
         char guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
 
-        assertEquals('a', guess);
+        assertEquals('e', guess);
     }
+
+    @Test
+    public void ifEIsAlreadyGuessedGuessT() {
+        char guess1 = player.GetGuess(Arrays.asList('_', '_', '_'));
+
+        assertEquals('e', guess1);
+
+
+        char guess2 = player.GetGuess(Arrays.asList('_', '_', '_'));
+
+        assertEquals('t', guess2);
+    }
+
+    @Test
+    public void GetNextBestGuess() throws Exception {
+        char bestGuess = player.nextBestGuess();
+
+        assertEquals('e', bestGuess);
+
+        char bestGuess2 = player.nextBestGuess();
+
+        assertEquals('t', bestGuess2);
+
+    }
+
+
 }
