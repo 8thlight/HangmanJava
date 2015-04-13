@@ -5,13 +5,17 @@ import java.util.*;
 
 public class YourPlayer implements Player {
 
+  private static final char NO_GUESS = 0x00;
+
   private final Random rnd = new Random();
-  private final List<Character> guesses = new ArrayList<>();
 
-  private final char[] VOWELS = {'a','e','i','o','u'};
-
+  private List<Character> commonChars = new ArrayList<>(Arrays.asList('r','s','t','l','n','e'));
+  private LinkedList<Character> otherChars = new LinkedList<>(commonChars);
+  private Stack<Character> guessStack = new Stack<>();
   private List<Character> currentClue;
   private int guessCount = 0;
+
+
 
   @Override
   public char GetGuess(List<Character> currentClue) {
@@ -20,12 +24,30 @@ public class YourPlayer implements Player {
 
     List<Integer> emptySpotList = getEmptySpotPositions();
     if (emptySpotList.isEmpty()) {
-      return ' ';
+      return NO_GUESS;
     }
 
-    
+    Character guess = NO_GUESS;
+    if (!commonChars.isEmpty()) {
+      for (char c : commonChars) {
+        if (!currentClue.contains(c)) {
+          guess = c;
+          break;
+        }
+      }
+    }
 
-    return 'a';
+    if (guess > NO_GUESS) {
+      commonChars.remove(guess);
+      guessStack.push(guess);
+      return guess;
+    }
+
+    char rndChar = getRandomCharacter(null);
+    guessStack.push(rndChar);
+    //TODO: check guessStack
+
+    return rndChar;
   }
 
   public List<Integer> getEmptySpotPositions() {
@@ -40,6 +62,19 @@ public class YourPlayer implements Player {
 
   public int getTotalGuessCount() {
     return this.guessCount;
+  }
+
+  public Character getLastGuess() {
+    if (guessStack.isEmpty()) {
+      return NO_GUESS;
+    }
+    return guessStack.peek();
+  }
+
+  private Character getRandomCharacter(List<Character> exlusionList) {
+    int i = rnd.nextInt(26) + 97;
+    // TODO: check exlusionList first
+    return (char)i;
   }
 
 }
