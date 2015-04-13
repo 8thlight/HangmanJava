@@ -33,9 +33,17 @@ public class YourPlayer implements Player {
 
   @Override
   public char GetGuess(List<Character> clue) {
+    if (clue == null) {
+      return 0;
+    }
+
     latestClue = clue;
-    if (guesses.size() > 0)
-      return guesses.pop();
+    if (guesses.size() > 0) {
+      char c = guesses.pop();
+      if (!latestClue.contains(c))
+        return c;
+    }
+
     return 0;
   }
 
