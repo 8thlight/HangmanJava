@@ -7,6 +7,7 @@ import java.util.*;
 public class YourPlayer implements Player {
 
     Queue<Character> bestGuesses = new LinkedList<Character>();
+    Set<Character> pastCorrectGuesses = new HashSet<Character>();
 
     public YourPlayer() {
         setBestGuesses();
@@ -21,8 +22,20 @@ public class YourPlayer implements Player {
 
     @Override
     public char GetGuess(List<Character> currentClue) {
-        char guess = bestGuesses.poll();
+        updateCorrectGuesses(currentClue);
+        Character guess = bestGuesses.poll();
+        if (guess == 'q' && !pastCorrectGuesses.contains('u')) {
+            guess = bestGuesses.poll();
+        }
         return guess;
+    }
+
+    private void updateCorrectGuesses(List<Character> currentClue) {
+        for (Character guess: currentClue) {
+            if (guess != '_') {
+                pastCorrectGuesses.add(guess);
+            }
+        }
     }
 
 }

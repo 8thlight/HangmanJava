@@ -2,64 +2,53 @@ package com.hangman.players;
 
 import org.junit.Test;
 import java.util.Arrays;
+import java.util.Set;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class YourPlayerTest {
     @Test
-    public void GuessesRWhenThereAreNoSuccessfulCharactersGuessedYet() {
+    public void GuessesEWhenThereAreNoSuccessfulCharactersGuessedYet() {
         YourPlayer player = new YourPlayer();
         char guess = player.GetGuess(Arrays.asList('_', '_', '_'));
-        assertEquals('r', guess);
+        assertEquals('e', guess);
     }
 
     @Test
-    public void GuessesRWhenThereAreSuccessfulCharactersGuessedThatAreNotR() {
+    public void GuessesRWhenThereAreSuccessfulCharactersGuessedThatAreNotE() {
         YourPlayer player = new YourPlayer();
-        char guess = player.GetGuess(Arrays.asList('r', '_', 'r'));
-        assertEquals('r', guess);
+        char guess = player.GetGuess(Arrays.asList('e', '_', 'e'));
+        assertEquals('e', guess);
     }
 
     @Test
-    public void DoesNotGuessRWhenAIsInTheClueAsWell() {
+    public void DoesNotGuessEWhenAIsInTheClueAsWell() {
         YourPlayer player = new YourPlayer();
         char guess = player.GetGuess(Arrays.asList('_', 'e', '_'));
-        assertEquals('r', guess);
+        assertEquals('e', guess);
     }
 
     @Test
-    public void WillAnswerWithMostCommonLetters() {
+    public void WillNotAnswerQIfNoU() throws Exception {
         YourPlayer player = new YourPlayer();
-        nextGuessIs(player, 'e');
-        nextGuessIs(player, 't');
-        nextGuessIs(player, 'a');
-        nextGuessIs(player, 'o');
-        nextGuessIs(player, 'i');
-        nextGuessIs(player, 'n');
-        nextGuessIs(player, 's');
-        nextGuessIs(player, 'h');
-        nextGuessIs(player, 'r');
-        nextGuessIs(player, 'd');
-        nextGuessIs(player, 'l');
-        nextGuessIs(player, 'u');
-        nextGuessIs(player, 'c');
-        nextGuessIs(player, 'm');
-        nextGuessIs(player, 'f');
-        nextGuessIs(player, 'w');
-        nextGuessIs(player, 'y');
-        nextGuessIs(player, 'p');
-        nextGuessIs(player, 'v');
-        nextGuessIs(player, 'b');
-        nextGuessIs(player, 'g');
-        nextGuessIs(player, 'k');
-        nextGuessIs(player, 'q');
-        nextGuessIs(player, 'j');
-        nextGuessIs(player, 'x');
-        nextGuessIs(player, 'z');
+        for (int i = 0; i< 25; i++) {
+            char guess = player.GetGuess(Arrays.asList('a', '_', '_', '_'));
+            assertTrue(guess != 'q');
+        }
     }
 
-    private void nextGuessIs(YourPlayer player, char expectedGuess) {
-        char guess = player.GetGuess(Arrays.asList('_'));
-        assertEquals(expectedGuess, guess);
+    @Test
+    public void WillEventuallyAnswerQIfUIsPresent() throws Exception {
+        YourPlayer player = new YourPlayer();
+        boolean qHasBeenUsed = false;
+        for (int i = 0; i< 25; i++) {
+            char guess = player.GetGuess(Arrays.asList('_', 'u', '_', '_'));
+            if (guess == 'q') {
+                qHasBeenUsed = true;
+            }
+        }
+        assertTrue(qHasBeenUsed);
     }
 
 }
