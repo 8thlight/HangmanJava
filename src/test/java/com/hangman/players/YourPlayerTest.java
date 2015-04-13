@@ -7,28 +7,40 @@ import static org.junit.Assert.assertEquals;
 public class YourPlayerTest {
     @Test
     public void GuessesAWhenThereAreNoSuccessfulCharactersGuessedYet() {
-        YourPlayer player = new YourPlayer();
-
-        char guess = player.GetGuess(Arrays.asList('_', '_', '_'));
-
+        char guess = newYourPlayer().GetGuess(Arrays.asList('_', '_', '_'));
         assertEquals('a', guess);
     }
 
     @Test
     public void GuessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
-        YourPlayer player = new YourPlayer();
-
-        char guess = player.GetGuess(Arrays.asList('m', '_', 'n'));
-
+        char guess = newYourPlayer().GetGuess(Arrays.asList('m', '_', 'n'));
         assertEquals('a', guess);
     }
 
     @Test
     public void GuessesAWhenAIsThereAreAsInTheClueAsWell() {
-        YourPlayer player = new YourPlayer();
-
-        char guess = player.GetGuess(Arrays.asList('_', 'a', '_'));
-
+        char guess = newYourPlayer().GetGuess(Arrays.asList('_', 'a', '_'));
         assertEquals('a', guess);
+    }
+
+    @Test
+    public void GuessesSomething() {
+        newYourPlayer().GetGuess(Arrays.asList('b'));
+    }
+
+    @Test
+    public void EnsureRecentGuesses() {
+
+    }
+
+    @Test
+    public void EnsureSpotTrackingIntegrity() {
+        YourPlayer player = newYourPlayer();
+        player.GetGuess(Arrays.asList('_', '_', '_'));
+        assertEquals(3, player.getEmptySpotPositions().size());
+    }
+
+    private static YourPlayer newYourPlayer() {
+        return new YourPlayer();
     }
 }
