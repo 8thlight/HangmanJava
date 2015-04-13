@@ -4,7 +4,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class YourPlayerTest {
     @Test
@@ -13,7 +13,7 @@ public class YourPlayerTest {
 
         char guess = player.GetGuess(Arrays.asList('_', '_', '_'));
 
-        assertEquals('a', guess);
+        assertTrue(player.alphabet.contains(guess));
     }
 
     @Test

@@ -2,7 +2,6 @@ package com.hangman.players;
 import com.hangman.Player;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class YourPlayer implements Player {
 
@@ -14,7 +13,7 @@ public class YourPlayer implements Player {
     buildAlphabet();
     char letter = alphabet.get(0);
     guessedLetters.add(letter);
-    return 'a';
+    return letter;
   }
 
   public List<Character> GetGuessedLetters() {
@@ -22,7 +21,8 @@ public class YourPlayer implements Player {
   }
 
   private void buildAlphabet() {
-    for (int i = 0; i <= 25; i++) {
+    for (int i = 'a'; i <= 'z'; i++) {
+      System.out.print(i);
       alphabet.add((char)i);
     }
   }
