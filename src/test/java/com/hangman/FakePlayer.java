@@ -2,8 +2,10 @@ package com.hangman;
 
 import com.hangman.Player;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class FakePlayer implements Player {
     private LinkedList<Character> guesses;
