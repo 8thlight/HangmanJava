@@ -8,7 +8,7 @@ public class YourPlayer implements Player {
   private static final char NO_GUESS = 0x00;
 
   private final Random rnd = new Random();
-  private List<Character> IMMUTABLE_CHARS = Arrays.asList('r','s','t','l','n','e','a','i','o','u');
+  private List<Character> IMMUTABLE_CHARS = Arrays.asList('e','a','i','o','u','r','s','t','l','n','h','d');
   private List<Character> commonChars = new ArrayList<>(IMMUTABLE_CHARS);
 
   private Stack<Character> guessStack = new Stack<>();
