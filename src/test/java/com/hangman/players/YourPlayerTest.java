@@ -37,8 +37,8 @@ public class YourPlayerTest {
 
         assertEquals((char)0, (char)player.getLastGuess());
 
-//        player.GetGuess(Arrays.asList('a'));
-//        assertNotEquals((char) 0, (char) player.getLastGuess());
+        player.GetGuess(Arrays.asList('_'));
+        assertNotEquals((char) 0, (char) player.getLastGuess());
     }
 
     @Test

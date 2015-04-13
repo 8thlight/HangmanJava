@@ -43,11 +43,9 @@ public class YourPlayer implements Player {
       return guess;
     }
 
-    char rndChar = getRandomCharacter(null);
-    guessStack.push(rndChar);
-    //TODO: check guessStack
+    guess = getCharacter();
 
-    return rndChar;
+    return guess;
   }
 
   public List<Integer> getEmptySpotPositions() {
@@ -60,20 +58,28 @@ public class YourPlayer implements Player {
     return resList;
   }
 
-  public int getTotalGuessCount() {
+  int getTotalGuessCount() {
     return this.guessCount;
   }
 
-  public Character getLastGuess() {
+  Character getLastGuess() {
     if (guessStack.isEmpty()) {
       return NO_GUESS;
     }
     return guessStack.peek();
   }
 
-  private Character getRandomCharacter(List<Character> exlusionList) {
+  Character getCharacter() {
+    char rndChar = NO_GUESS;
+    while (rndChar == NO_GUESS || guessStack.contains(rndChar)) {
+      rndChar = getRandomCharacter();
+    }
+    guessStack.push(rndChar);
+    return rndChar;
+  }
+
+  private Character getRandomCharacter() {
     int i = rnd.nextInt(26) + 97;
-    // TODO: check exlusionList first
     return (char)i;
   }
 
