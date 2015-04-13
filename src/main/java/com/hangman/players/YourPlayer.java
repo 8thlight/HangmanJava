@@ -9,25 +9,24 @@ import java.util.List;
 public class YourPlayer implements Player {
 
   public static char[] vowels = {'a', 'e', 'i', 'o', 'u', 'y'};
+  List<Character> gueses = new ArrayList();
 
   @Override
   public char GetGuess(List<Character> currentClue) {
 
-     List gueses = new ArrayList<String>();
+
 
     for(char vowel : vowels)
     {
       if (currentClue.contains(vowel))
       {
-        return 'z'; //constanant
+        return 'z'; //\
       }
 
-      if (!gueses.contains(String.valueOf(vowel)))
-      {
-        gueses.add(String.valueOf(vowel));
+      if (!gueses.contains(vowel)){
+        gueses.add(vowel);
         return vowel;
       }
-
     }
 
     return 'a';

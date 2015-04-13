@@ -44,8 +44,8 @@ public class YourPlayerTest {
     {
         YourPlayer player = new YourPlayer();
         char guess = player.GetGuess(Arrays.asList('_', '_', '_'));
-        assertTrue(Arrays.asList(player.vowels).contains(guess));
         char guess2 = player.GetGuess(Arrays.asList('_', '_', '_'));
+        assertTrue(Arrays.asList(player.vowels).contains(guess));
         assertTrue(Arrays.asList(player.vowels).contains(guess2));
     }
 
