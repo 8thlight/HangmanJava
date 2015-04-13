@@ -5,6 +5,9 @@ import org.junit.Test;
 
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -45,8 +48,10 @@ public class YourPlayerTest {
         YourPlayer player = new YourPlayer();
         char guess = player.GetGuess(Arrays.asList('_', '_', '_'));
         char guess2 = player.GetGuess(Arrays.asList('_', '_', '_'));
-        assertTrue(Arrays.asList(player.vowels).contains(guess));
-        assertTrue(Arrays.asList(player.vowels).contains(guess2));
+        char[] vowels = player.vowels;
+        assertEquals(String.valueOf(vowels[0]),(String.valueOf(guess)));
+        assertEquals(String.valueOf(vowels[1]),(String.valueOf(guess2)));
+
     }
 
     @Test

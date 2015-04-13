@@ -8,7 +8,7 @@ import java.util.List;
 
 public class YourPlayer implements Player {
 
-  public static char[] vowels = {'a', 'e', 'i', 'o', 'u', 'y'};
+  public  char[] vowels = {'a', 'e', 'i', 'o', 'u', 'y'};
   List<Character> gueses = new ArrayList();
 
   @Override
