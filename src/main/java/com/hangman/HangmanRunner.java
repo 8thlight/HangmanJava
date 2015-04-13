@@ -43,7 +43,7 @@ public class HangmanRunner implements Runner {
 
         HangmanRunner runner = new HangmanRunner(game,
                 display,
-                new YourPlayer(),
+                new YourPlayer(WordList.words),
                 new SleepTicker());
         runner.run();
     }
