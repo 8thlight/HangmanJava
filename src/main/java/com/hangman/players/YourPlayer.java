@@ -1,113 +1,127 @@
 package com.hangman.players;
 import com.hangman.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class YourPlayer implements Player {
+  List<Character> usedChars = new ArrayList<>();
   @Override
   public char GetGuess(List<Character> currentClue) {
-    if (moreVowelsToBeReturned(currentClue)){
-      return nextVowelToReturn(currentClue);
-    }
-
-    return returnNextPopularConsonant(currentClue);
+    return returnNextPopularChoice(currentClue);
   }
 
-  public boolean moreVowelsToBeReturned(List<Character> currentClue){
-    List<Character> list = Arrays.asList('a', 'e', 'i', 'o', 'u', 'y');
-    if (currentClue.containsAll(list)){
-      return false;
-    }else{
-      return true;
-    }
-  }
-
-  public char nextVowelToReturn(List<Character> currentClue){
-    if (!currentClue.contains('a')){
-      return 'a';
-    }
-    if (!currentClue.contains('e')){
+  public char returnNextPopularChoice(List<Character> currentClue){
+    if (!currentClue.contains('e') && !usedChars.contains('e')){
+      addToUsedChars('e');
       return 'e';
     }
-    if (!currentClue.contains('i')){
-      return 'i';
+    if (!currentClue.contains('a') && !usedChars.contains('a')){
+      addToUsedChars('a');
+      return 'a';
     }
-    if (!currentClue.contains(('o'))){
-      return 'o';
-    }
-    if (!currentClue.contains('u')) {
-      return 'u';
-    }
-    if (!currentClue.contains('y')) {
-      return 'y';
-    }
-    throw new IllegalStateException("All vowels existed. No more vowels remain to be returned");
-  }
-
-  public char returnNextPopularConsonant(List<Character> currentClue){
-    if (!currentClue.contains('s')){
+    if (!currentClue.contains('s') && !usedChars.contains('s')){
+      addToUsedChars('s');
       return 's';
     }
-    if (!currentClue.contains('t')){
+    if (!currentClue.contains('t') && !usedChars.contains('t')){
+      addToUsedChars('t');
       return 't';
     }
-    if (!currentClue.contains('r')){
+    if (!currentClue.contains('r') && !usedChars.contains('r')){
+      addToUsedChars('r');
       return 'r';
     }
-    if (!currentClue.contains('l')){
+    if (!currentClue.contains('l') && !usedChars.contains('l')){
+      addToUsedChars('l');
       return 'l';
     }
-    if(!currentClue.contains('n')){
+    if(!currentClue.contains('n') && !usedChars.contains('n')){
+      addToUsedChars('n');
       return 'n';
     }
-    if(!currentClue.contains('p')){
-      return 'p';
+    if (!currentClue.contains('i') && !usedChars.contains('i')){
+      addToUsedChars('i');
+      return 'i';
     }
-    if(!currentClue.contains('g')){
-      return 'g';
+    if (!currentClue.contains(('o')) && !usedChars.contains('o')){
+      addToUsedChars('o');
+      return 'o';
     }
-    if(!currentClue.contains('h')){
-      return 'h';
-    }
-    if(!currentClue.contains('z')){
-      return 'z';
-    }
-    if(!currentClue.contains('m')){
-      return 'm';
-    }
-    if(!currentClue.contains('x')){
-      return 'x';
-    }
-    if(!currentClue.contains('c')){
+    if(!currentClue.contains('c')  && !usedChars.contains('c')){
+      addToUsedChars('c');
       return 'c';
     }
-    if(!currentClue.contains('d')){
+    if(!currentClue.contains('d')  && !usedChars.contains('d')){
+      addToUsedChars('d');
       return 'd';
     }
-    if(!currentClue.contains('b')){
+    if(!currentClue.contains('b')  && !usedChars.contains('b')){
+      addToUsedChars('b');
       return 'b';
     }
-    if(!currentClue.contains('f')){
+    if(!currentClue.contains('f')  && !usedChars.contains('f')){
+      addToUsedChars('f');
       return 'f';
     }
-    if(!currentClue.contains('j')){
+    if(!currentClue.contains('j')  && !usedChars.contains('j')){
+      addToUsedChars('j');
       return 'j';
     }
-    if(!currentClue.contains('k')){
+    if (!currentClue.contains('u')  && !usedChars.contains('u')) {
+      addToUsedChars('u');
+      return 'u';
+    }
+    if (!currentClue.contains('y') && !usedChars.contains('y')) {
+      addToUsedChars('y');
+      return 'y';
+    }
+    if(!currentClue.contains('p') && !usedChars.contains('p')){
+      addToUsedChars('p');
+      return 'p';
+    }
+    if(!currentClue.contains('g')  && !usedChars.contains('g')){
+      addToUsedChars('g');
+      return 'g';
+    }
+    if(!currentClue.contains('h')  && !usedChars.contains('h')){
+      addToUsedChars('h');
+      return 'h';
+    }
+    if(!currentClue.contains('z')  && !usedChars.contains('z')){
+      addToUsedChars('z');
+      return 'z';
+    }
+    if(!currentClue.contains('m')  && !usedChars.contains('m')){
+      addToUsedChars('m');
+      return 'm';
+    }
+    if(!currentClue.contains('x')  && !usedChars.contains('x')){
+      addToUsedChars('x');
+      return 'x';
+    }
+    if(!currentClue.contains('k')  && !usedChars.contains('k')){
+      addToUsedChars('k');
       return 'k';
     }
-    if(!currentClue.contains('q')){
+    if(!currentClue.contains('q')  && !usedChars.contains('q')){
+      addToUsedChars('q');
       return 'q';
     }
-    if(!currentClue.contains('v')){
+    if(!currentClue.contains('v')  && !usedChars.contains('v')){
+      addToUsedChars('v');
       return 'v';
     }
-    if(!currentClue.contains('w')){
+    if(!currentClue.contains('w')  && !usedChars.contains('w')){
+      addToUsedChars('w');
       return 'w';
     }
     throw new IllegalStateException("All consonants exhausted.");
   }
+
+   public void addToUsedChars(char addThisChar){
+      usedChars.add(addThisChar);
+   }
 
 }

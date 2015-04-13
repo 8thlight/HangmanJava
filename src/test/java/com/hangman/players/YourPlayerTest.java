@@ -13,14 +13,14 @@ public class YourPlayerTest {
 
         char guess = player.GetGuess(Arrays.asList('_', '_', '_'));
 
-        assertEquals('a', guess);
+        assertEquals('e', guess);
     }
 
     @Test
     public void GuessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.GetGuess(Arrays.asList('m', '_', 'n'));
+        char guess = player.GetGuess(Arrays.asList('m', 'e', '_', 'n'));
 
         assertEquals('a', guess);
     }
@@ -35,41 +35,6 @@ public class YourPlayerTest {
     }
 
     @Test
-    public void ReturnsTrueIfMoreVowelsToBeReturned(){
-        YourPlayer player = new YourPlayer();
-        List<Character> currentClue = Arrays.asList('a', 'e', 'i', '_', 'o');
-        boolean result = player.moreVowelsToBeReturned(currentClue);
-
-        assertEquals(true, result);
-    }
-
-    @Test
-    public void ReturnsFalseIfMoreVowelsToBeReturned(){
-        YourPlayer player = new YourPlayer();
-        List<Character> currentClue = Arrays.asList('a', 'e', 'i', '_', 'o', 'u', 'y');
-        boolean result = player.moreVowelsToBeReturned(currentClue);
-
-        assertEquals(false, result);
-    }
-
-    @Test
-    public void GetNextVowelInList(){
-        YourPlayer player = new YourPlayer();
-        List<Character> currentClue = Arrays.asList('a', '_', '_', 'i');
-
-        char result = player.nextVowelToReturn(currentClue);
-
-        assertEquals('e', result);
-    }
-
-    @Test (expected = IllegalStateException.class)
-    public void ThrowsExceptionWhenNoMoreVowelsToBeReturned(){
-        YourPlayer player = new YourPlayer();
-        List<Character> currentClue = Arrays.asList('a', 'e', 'i', '_', 'o', 'u', 'y');
-        player.nextVowelToReturn(currentClue);
-    }
-
-    @Test
     public void ReturnConsonantInOrderOfPopularity(){
         YourPlayer player = new YourPlayer();
         List<Character> currentClue = Arrays.asList('a', 'e', 'i', '_', 'o', 'u', 'y');
@@ -79,4 +44,12 @@ public class YourPlayerTest {
         assertEquals('s', guess);
     }
 
+    @Test
+    public void ShouldAddToListOfUsedChars(){
+        YourPlayer player = new YourPlayer();
+
+        player.addToUsedChars('a');
+
+        assertEquals(true, player.usedChars.contains('a'));
+    }
 }
