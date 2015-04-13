@@ -3,24 +3,17 @@ package com.hangman.players;
 import org.junit.Test;
 import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class YourPlayerTest {
     @Test
     public void GuessesAWhenThereAreNoSuccessfulCharactersGuessedYet() {
         YourPlayer player = new YourPlayer();
 
+        char expectedGuess = player.getMostFrequentCharacter();
         char guess = player.GetGuess(Arrays.asList('_', '_', '_'));
 
-        assertEquals('a', guess);
-    }
-
-    @Test
-    public void GuessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
-        YourPlayer player = new YourPlayer();
-
-        char guess = player.GetGuess(Arrays.asList('m', '_', 'n'));
-
-        assertEquals('a', guess);
+        assertEquals(expectedGuess, guess);
     }
 
     @Test
@@ -29,6 +22,7 @@ public class YourPlayerTest {
 
         char guess = player.GetGuess(Arrays.asList('_', 'a', '_'));
 
-        assertEquals('a', guess);
+        assertNotEquals('a', guess);
     }
+
 }
