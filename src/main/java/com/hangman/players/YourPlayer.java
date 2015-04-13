@@ -4,8 +4,6 @@ import com.hangman.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class YourPlayer implements Player {
 
@@ -17,20 +15,46 @@ public class YourPlayer implements Player {
             'q', 'z'
     };
 
-    List<Character> incorrectGuesses = new ArrayList<>();
-    Set<Character> correctGuesses = new TreeSet<>();
+//    private static List<Character> COMMON_REPEATS =
+//            Arrays.asList('e', 't', 'o', 'n', 's', 'r', 'd', 'l', 'c', 'm', 'f', 'g', 'p');
+
+    List<Character> exhaustedGuesses = new ArrayList<>();
     Integer remainingBlanks;
+    Character lastGuess;
 
     @Override
     public char GetGuess(List<Character> currentClue) {
+        if (isFirstGuess()) {
+            remainingBlanks = getRemainingBlanks(currentClue);
+            return saveAndGuess(LETTERS[0]);
+        }
         return guessNextLetter(currentClue);
     }
 
     private char guessNextLetter(List<Character> currentClue) {
         if (lastGuessWasCorrect(currentClue)) {
-            return saveAndGuess(LETTERS[correctGuesses.size() - 1]);
+            // TODO: don't repeat guess letters that don't repeat in English
+//            if (COMMON_REPEATS.contains(lastGuess)) {
+            return saveAndGuess(lastGuess);
+//            }
         }
-        return saveAndGuess(LETTERS[incorrectGuesses.size()]);
+        exhaustedGuesses.add(lastGuess);
+        return saveAndGuess(LETTERS[exhaustedGuesses.size()]);
+    }
+
+    private boolean lastGuessWasCorrect(List<Character> clue) {
+        Integer blanks = getRemainingBlanks(clue);
+        if (blanks < remainingBlanks) {
+            remainingBlanks = blanks;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isFirstGuess() {
+        return exhaustedGuesses.size() == 0 &&
+                lastGuess == null &&
+                remainingBlanks == null;
     }
 
     private Integer getRemainingBlanks(List<Character> currentClue) {
@@ -43,27 +67,8 @@ public class YourPlayer implements Player {
         return blanks;
     }
 
-    private boolean lastGuessWasCorrect(List<Character> clue) {
-        Integer blanks = getRemainingBlanks(clue);
-        if (remainingBlanks != null && !blanks.equals(remainingBlanks)) {
-            remainingBlanks = blanks;
-            addCorrectGuess();
-            return true;
-        }
-        return false;
-    }
-
-    private void addCorrectGuess() {
-        int index = incorrectGuesses.size();
-        if (index > 0) {
-            --index;
-        }
-        char lastGuess = incorrectGuesses.remove(index);
-        correctGuesses.add(lastGuess);
-    }
-
     private char saveAndGuess(char c) {
-        incorrectGuesses.add(c);
+        lastGuess = c;
         return c;
     }
 }

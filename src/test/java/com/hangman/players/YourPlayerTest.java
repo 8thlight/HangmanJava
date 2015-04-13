@@ -45,7 +45,7 @@ public class YourPlayerTest {
         for (int i = 0; i < 26; ++i) {
             player.GetGuess(Collections.singletonList('_'));
         }
-        assertFalse(listHasDuplicates(player.incorrectGuesses));
+        assertFalse(listHasDuplicates(player.exhaustedGuesses));
     }
 
     private boolean listHasDuplicates(List<Character> candidate) {
