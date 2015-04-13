@@ -8,9 +8,9 @@ public class YourPlayer implements Player {
   private static final char NO_GUESS = 0x00;
 
   private final Random rnd = new Random();
+  private List<Character> IMMUTABLE_CHARS = Arrays.asList('r','s','t','l','n','e');
+  private List<Character> commonChars = new ArrayList<>(IMMUTABLE_CHARS);
 
-  private List<Character> commonChars = new ArrayList<>(Arrays.asList('r','s','t','l','n','e'));
-  private LinkedList<Character> otherChars = new LinkedList<>(commonChars);
   private Stack<Character> guessStack = new Stack<>();
   private List<Character> currentClue;
   private int guessCount = 0;
@@ -71,7 +71,7 @@ public class YourPlayer implements Player {
 
   Character getCharacter() {
     char rndChar = NO_GUESS;
-    while (rndChar == NO_GUESS || guessStack.contains(rndChar)) {
+    while (rndChar == NO_GUESS || IMMUTABLE_CHARS.contains(rndChar) || guessStack.contains(rndChar)) {
       rndChar = getRandomCharacter();
     }
     guessStack.push(rndChar);
