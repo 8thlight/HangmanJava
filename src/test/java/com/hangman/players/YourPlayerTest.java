@@ -2,7 +2,9 @@ package com.hangman.players;
 
 import org.junit.Test;
 import java.util.Arrays;
-import static org.junit.Assert.assertEquals;
+import java.util.List;
+import java.util.ArrayList;
+import static org.junit.Assert.*;
 
 public class YourPlayerTest {
     @Test
@@ -11,7 +13,7 @@ public class YourPlayerTest {
 
         char guess = player.GetGuess(Arrays.asList('_', '_', '_'));
 
-        assertEquals('a', guess);
+        assertTrue(player.alphabet.contains(guess));
     }
 
     @Test
@@ -30,5 +32,18 @@ public class YourPlayerTest {
         char guess = player.GetGuess(Arrays.asList('_', 'a', '_'));
 
         assertEquals('a', guess);
+    }
+
+    @Test
+    public void AddLetterToGuessedListAfterGuess() {
+        YourPlayer player = new YourPlayer();
+
+        player.GetGuess(Arrays.asList('_', '_', '_'));
+        List<Character> guessedLetters = player.GetGuessedLetters();
+
+        List<Character> expectedList = new ArrayList<Character>();
+        expectedList.add('a');
+
+        assertEquals(expectedList, guessedLetters);
     }
 }
