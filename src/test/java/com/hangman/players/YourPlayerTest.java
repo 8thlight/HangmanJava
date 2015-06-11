@@ -9,7 +9,7 @@ public class YourPlayerTest {
     public void AlwaysGuessA() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.GetGuess(Arrays.asList('a', 'b', 'c'));
+        char guess = player.GetGuess(Arrays.asList('_', 'b', 'c'));
 
         assertEquals('a', guess);
     }
