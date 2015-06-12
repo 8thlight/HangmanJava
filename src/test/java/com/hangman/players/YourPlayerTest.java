@@ -10,13 +10,6 @@ public class YourPlayerTest {
     YourPlayer player = new YourPlayer();
 
     @Test
-    public void AlwaysGuessA() {
-        char guess = player.GetGuess(Arrays.asList('_', 'b', 'c'));
-
-        assertEquals('a', guess);
-    }
-
-    @Test
     public void DoesNotGuessAIfExists() {
         char guess = player.GetGuess(Arrays.asList('_', 'a'));
 
@@ -36,6 +29,14 @@ public class YourPlayerTest {
       }
     }
 
+    @Test
+    public void guessesTWhenEExists(){
+      char guess = player.GetGuess(Arrays.asList('_', 'e'));
+
+      assertEquals('t', guess);
+    }
+
+    //case
     private static List<Character> allLetters(){
       List<Character> result = new ArrayList();
       for(char c = 'a'; c <= 'z'; c++){
