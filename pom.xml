@@ -39,6 +39,7 @@
           <targetTests>
             <param>com.hangman.players.*</param>
           </targetTests>
+          <timestampedReports>false</timestampedReports>
         </configuration>
       </plugin>
     </plugins>
