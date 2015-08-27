@@ -1,6 +1,7 @@
 plugins {
   id 'java'
   id 'application'
+  id 'info.solidsoft.pitest' version '1.1.4'
 }
 
 mainClassName = 'com.hangman.HangmanRunner'
@@ -23,4 +24,16 @@ dependencies {
 task wrapper(type: Wrapper) {
   gradleVersion   = '2.6'
   distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
+}
+
+pitest {
+  pitestVersion                     = "1.1.6"
+  targetClasses                     = ['com.hangman.players.*']
+  targetTests                       = ['com.hangman.players.*']
+  timestampedReports                = false
+  /*
+  failWhenNoMutations               = true
+  mutators                          = ['ALL']
+  enableDefaultIncrementalAnalysis  = true
+  */
 }
