@@ -4,7 +4,7 @@ This program tries to solve a game of hangman. It doesn't do a very good job - i
 
 ## How To
 
-Fork this repo then clone it. To run the tests:
+Fork this repo then clone it.
 
 To test:
 ```shell
