@@ -4,7 +4,7 @@ apply plugin: 'application'
 mainClassName = 'com.hangman.HangmanRunner'
 
 repositories {
-  mavenCentral()
+  jcenter()
 }
 
 dependencies {
