@@ -1,7 +1,16 @@
-apply plugin: 'java'
-apply plugin: 'application'
+plugins {
+  id 'java'
+  id 'application'
+}
 
 mainClassName = 'com.hangman.HangmanRunner'
+group = 'Hangman'
+version = '1'
+
+description = """"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
 
 repositories {
   jcenter()
