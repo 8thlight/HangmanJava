@@ -7,7 +7,7 @@ import java.util.List;
 
 public class YourPlayer implements Player {
   @Override
-  public char GetGuess(List<Character> clue) {
+  public char GetGuess(List<Character> currentClue) {
     return 'a';
   }
 }

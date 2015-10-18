@@ -1,0 +1,39 @@
+plugins {
+  id 'java'
+  id 'application'
+  id 'info.solidsoft.pitest' version '1.1.4'
+}
+
+mainClassName = 'com.hangman.HangmanRunner'
+group = 'Hangman'
+version = '1'
+
+description = """"""
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion   = '2.6'
+  distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
+}
+
+pitest {
+  pitestVersion                     = "1.1.6"
+  targetClasses                     = ['com.hangman.players.*']
+  targetTests                       = ['com.hangman.players.*']
+  timestampedReports                = false
+  /*
+  failWhenNoMutations               = true
+  mutators                          = ['ALL']
+  enableDefaultIncrementalAnalysis  = true
+  */
+}
