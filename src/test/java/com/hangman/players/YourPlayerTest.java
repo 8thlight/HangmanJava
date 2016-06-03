@@ -9,7 +9,7 @@ public class YourPlayerTest {
     public void GuessesAWhenThereAreNoSuccessfulCharactersGuessedYet() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.GetGuess(Arrays.asList('_', '_', '_'));
+        char guess = player.GetGuess(Arrays.asList(null, null, null));
 
         assertEquals('a', guess);
     }
@@ -18,7 +18,7 @@ public class YourPlayerTest {
     public void GuessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.GetGuess(Arrays.asList('m', '_', 'n'));
+        char guess = player.GetGuess(Arrays.asList('m', null, 'n'));
 
         assertEquals('a', guess);
     }
@@ -27,7 +27,7 @@ public class YourPlayerTest {
     public void GuessesAWhenAIsThereAreAsInTheClueAsWell() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.GetGuess(Arrays.asList('_', 'a', '_'));
+        char guess = player.GetGuess(Arrays.asList(null, 'a', null));
 
         assertEquals('a', guess);
     }

@@ -100,11 +100,11 @@ public class HangmanGameTest implements Observer {
     }
 
     @Test
-    public void TheCurrentClueStartsAsAListOfEmptySlots() {
+    public void TheCurrentClueStartsAsAListOfNulls() {
         simpleAnswerGenerator.setNextAnswer("eric");
         game.SetAnswerGenerator(simpleAnswerGenerator);
 
-        assertEquals(Arrays.asList('_', '_', '_', '_'), game.CurrentClue());
+        assertEquals(Arrays.asList(null, null, null, null), game.CurrentClue());
     }
 
     @Test
@@ -114,7 +114,7 @@ public class HangmanGameTest implements Observer {
 
         game.Guess('e');
 
-        assertEquals(Arrays.asList('e', '_', '_', '_'), game.CurrentClue());
+        assertEquals(Arrays.asList('e', null, null, null), game.CurrentClue());
     }
 
     @Test
@@ -125,7 +125,7 @@ public class HangmanGameTest implements Observer {
         game.Guess('e');
         game.Guess('i');
 
-        assertEquals(Arrays.asList('e', '_', 'i', '_'), game.CurrentClue());
+        assertEquals(Arrays.asList('e', null, 'i', null), game.CurrentClue());
     }
 
     @Test
@@ -135,7 +135,7 @@ public class HangmanGameTest implements Observer {
 
         game.Guess('m');
 
-        assertEquals(Arrays.asList('_', '_', 'm', 'm', '_'), game.CurrentClue());
+        assertEquals(Arrays.asList(null, null, 'm', 'm', null), game.CurrentClue());
     }
 
     @Test
@@ -145,7 +145,7 @@ public class HangmanGameTest implements Observer {
 
         game.Guess('p');
 
-        assertEquals(Arrays.asList('p', '_', '_', '_', '_', '_'), game.CurrentClue());
+        assertEquals(Arrays.asList('p', null, null, null, null, null), game.CurrentClue());
     }
 
     @Test

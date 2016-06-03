@@ -45,7 +45,7 @@ public class HangmanGame extends Observable implements Game {
             if (correctGuesses.contains(c))
                 clue.add(c);
             else
-                clue.add('_');
+                clue.add(null);
         }
 
         return clue;

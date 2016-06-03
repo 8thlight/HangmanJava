@@ -25,8 +25,14 @@ public class ConsoleDisplay implements GameOverDisplay, Observer {
         Game game = (Game) o;
         String clueAsString = "";
 
-        for(Character c : game.CurrentClue())
-            clueAsString += c + " ";
+        for(Character c : game.CurrentClue()) {
+            if (c != null) {
+                clueAsString += c + " ";
+            } else {
+                clueAsString += "_ ";
+            }
+        }
+
 
         writer.writeLine("Current Clue Is " + clueAsString);
     }

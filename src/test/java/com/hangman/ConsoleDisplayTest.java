@@ -30,7 +30,7 @@ public class ConsoleDisplayTest extends Observable implements Game {
         FakeWriter writer = new FakeWriter();
         ConsoleDisplay display = new ConsoleDisplay(writer);
 
-        currentClue = Arrays.asList('_', 'a', '_');
+        currentClue = Arrays.asList(null, 'a', null);
         display.update(this, writer);
 
         List<String> expectedLines = new ArrayList<String>();
