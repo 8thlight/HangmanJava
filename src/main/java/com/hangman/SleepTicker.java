@@ -1,6 +1,6 @@
 package com.hangman;
 
-public class SleepTicker implements Ticker {
+class SleepTicker implements Ticker {
     @Override
     public void tick() {
       try {

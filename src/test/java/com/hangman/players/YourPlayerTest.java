@@ -6,28 +6,28 @@ import static org.junit.Assert.assertEquals;
 
 public class YourPlayerTest {
     @Test
-    public void GuessesAWhenThereAreNoSuccessfulCharactersGuessedYet() {
+    public void guessesAWhenThereAreNoSuccessfulCharactersGuessedYet() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.GetGuess(Arrays.asList(null, null, null));
+        char guess = player.getGuess(Arrays.asList(null, null, null));
 
         assertEquals('a', guess);
     }
 
     @Test
-    public void GuessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
+    public void guessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.GetGuess(Arrays.asList('m', null, 'n'));
+        char guess = player.getGuess(Arrays.asList('m', null, 'n'));
 
         assertEquals('a', guess);
     }
 
     @Test
-    public void GuessesAWhenAIsThereAreAsInTheClueAsWell() {
+    public void guessesAWhenAIsThereAreAsInTheClueAsWell() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.GetGuess(Arrays.asList(null, 'a', null));
+        char guess = player.getGuess(Arrays.asList(null, 'a', null));
 
         assertEquals('a', guess);
     }

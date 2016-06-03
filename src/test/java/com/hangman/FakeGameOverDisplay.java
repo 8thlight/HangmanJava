@@ -1,19 +1,17 @@
 package com.hangman;
 
-import com.hangman.GameOverDisplay;
-
-public class FakeGameOverDisplay implements GameOverDisplay {
+class FakeGameOverDisplay implements GameOverDisplay {
     private boolean gameOverDisplayed;
 
-    public FakeGameOverDisplay() {
+    FakeGameOverDisplay() {
         gameOverDisplayed = false;
     }
 
-    public void GameOver() {
+    public void gameOver() {
         gameOverDisplayed = true;
     }
 
-    public boolean GameOverDisplayed() {
+    boolean GameOverDisplayed() {
         return gameOverDisplayed;
     }
 }

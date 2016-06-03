@@ -2,9 +2,9 @@ package com.hangman;
 
 import java.util.Random;
 
-public class PseudoRandomNumberGenerator implements RandomNumberGenerator {
+class PseudoRandomNumberGenerator implements RandomNumberGenerator {
     @Override
-    public double Random() {
+    public double random() {
         Random random = new Random(System.currentTimeMillis());
 
         return random.nextDouble();

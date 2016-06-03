@@ -18,17 +18,17 @@ public class HangmanRunner implements Runner {
 
     @Override
     public void run() {
-        while(!game.IsOver()) {
-            char guess = player.GetGuess(game.CurrentClue());
-            game.Guess(guess);
+        while(!game.isOver()) {
+            char guess = player.getGuess(game.currentClue());
+            game.guess(guess);
             ticker.tick();
         }
-        display.GameOver();
+        display.gameOver();
     }
 
     @Override
     public boolean isWinner() {
-      return game.IsWinner();
+      return game.isWinner();
     }
 
     @Override

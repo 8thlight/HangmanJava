@@ -1,11 +1,8 @@
 package com.hangman;
-
-import com.hangman.Game;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class FakeGame implements Game {
+class FakeGame implements Game {
     private boolean done;
     private ArrayList<Character> guesses;
     private char lastGuess;
@@ -13,41 +10,41 @@ public class FakeGame implements Game {
     private boolean winner;
     private int numGuesses;
 
-    public FakeGame() {
+    FakeGame() {
         this.done = false;
-        this.guesses = new ArrayList<Character>();
+        this.guesses = new ArrayList<>();
     }
 
-    public void SetDone() {
+    void SetDone() {
         done = true;
     }
 
-    public boolean IsOver() {
+    public boolean isOver() {
         return done;
     }
 
-    public void SetLastGuess(char c) {
+    void SetLastGuess(char c) {
         lastGuess = c;
     }
 
-    public List<Character> Guesses() {
+    List<Character> Guesses() {
         return guesses;
     }
 
     @Override
-    public void Guess(char guess) {
+    public void guess(char guess) {
         guesses.add(guess);
         if (guess == lastGuess)
             SetDone();
     }
 
     @Override
-    public List<Character> CurrentClue() {
+    public List<Character> currentClue() {
         return clue;
     }
 
     @Override
-    public boolean IsWinner() {
+    public boolean isWinner() {
       return winner;
     }
 
@@ -56,13 +53,13 @@ public class FakeGame implements Game {
         return numGuesses;
     }
 
-    public void SetToWinner() {winner = true;}
+    void SetToWinner() {winner = true;}
 
-    public void SetCurrentClue(List<Character> clue) {
+    void SetCurrentClue(List<Character> clue) {
         this.clue = clue;
     }
 
-    public void SetNumGuesses(int guesses) {
+    void SetNumGuesses(int guesses) {
         numGuesses = guesses;
     }
 }

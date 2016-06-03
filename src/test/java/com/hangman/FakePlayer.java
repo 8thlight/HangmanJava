@@ -1,34 +1,29 @@
 package com.hangman;
-
-import com.hangman.Player;
-
 import java.util.LinkedList;
 import java.util.List;
 
-public class FakePlayer implements Player {
+class FakePlayer implements Player {
     private LinkedList<Character> guesses;
     private List<Character> latestClue;
 
-    public FakePlayer() {
-        guesses = new LinkedList<Character>();
+    FakePlayer() {
+        guesses = new LinkedList<>();
     }
 
-    public void SetGuesses(List<Character> chars) {
-        this.guesses = new LinkedList<Character>();
-        for(char guess : chars) {
-            this.guesses.add(guess);
-        }
+    void SetGuesses(List<Character> chars) {
+        this.guesses = new LinkedList<>();
+        this.guesses.addAll(chars);
     }
 
     @Override
-    public char GetGuess(List<Character> clue) {
+    public char getGuess(List<Character> clue) {
         latestClue = clue;
         if (guesses.size() > 0)
             return guesses.pop();
         return 0;
     }
 
-    public List<Character> GetLatestClue() {
+    List<Character> GetLatestClue() {
         return latestClue;
     }
 }

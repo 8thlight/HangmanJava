@@ -1,19 +1,17 @@
 package com.hangman;
 
-import com.hangman.RandomAnswerGeneratorFromList;
-import com.hangman.RandomNumberGenerator;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class RandomAnswerGeneratorFromListTest implements RandomNumberGenerator {
     private double randomNumber;
 
-    public double Random() {
+    public double random() {
         return randomNumber;
     }
 
     @Test
-    public void CanRandomlySelectTheFirstGuess()  {
+    public void canRandomlySelectTheFirstGuess()  {
         randomNumber = 0.0;
 
         RandomAnswerGeneratorFromList generator = new RandomAnswerGeneratorFromList(this);
@@ -22,7 +20,7 @@ public class RandomAnswerGeneratorFromListTest implements RandomNumberGenerator 
     }
 
     @Test
-    public void CanRandomlySelectTheLastGuess()  {
+    public void canRandomlySelectTheLastGuess()  {
         randomNumber = 1.0;
 
         RandomAnswerGeneratorFromList generator = new RandomAnswerGeneratorFromList(this);
@@ -31,7 +29,7 @@ public class RandomAnswerGeneratorFromListTest implements RandomNumberGenerator 
     }
 
     @Test
-    public void CanRandomlySelectOneInTheMiddle()  {
+    public void canRandomlySelectOneInTheMiddle()  {
         randomNumber = 0.1;
 
         RandomAnswerGeneratorFromList generator = new RandomAnswerGeneratorFromList(this);

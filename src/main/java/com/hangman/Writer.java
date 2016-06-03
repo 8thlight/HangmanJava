@@ -1,5 +1,5 @@
 package com.hangman;
 
-public interface Writer {
-    public void writeLine(String line);
+interface Writer {
+    void writeLine(String line);
 }

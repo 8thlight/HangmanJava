@@ -1,14 +1,12 @@
 package com.hangman;
 
-import com.hangman.Writer;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class FakeWriter implements Writer {
+class FakeWriter implements Writer {
     List<String> lines;
 
-    public FakeWriter() {
+    FakeWriter() {
         lines = new ArrayList<String>();
     }
 
@@ -16,7 +14,7 @@ public class FakeWriter implements Writer {
         lines.add(line);
     }
 
-    public List<String> writtenLines() {
+    List<String> writtenLines() {
         return lines;
     }
 }

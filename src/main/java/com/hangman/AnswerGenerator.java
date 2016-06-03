@@ -1,6 +1,5 @@
 package com.hangman;
-import java.util.List;
 
-public interface AnswerGenerator {
+interface AnswerGenerator {
     String generateAnswer();
 }

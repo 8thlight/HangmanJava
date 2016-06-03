@@ -3,20 +3,20 @@ package com.hangman;
 import java.util.Observable;
 import java.util.Observer;
 
-public class ConsoleDisplay implements GameOverDisplay, Observer {
+class ConsoleDisplay implements GameOverDisplay, Observer {
     private Writer writer;
 
-    public ConsoleDisplay() {
+    ConsoleDisplay() {
         this(new ConsoleWriter());
     }
 
-    public ConsoleDisplay(Writer writer) {
+    ConsoleDisplay(Writer writer) {
         this.writer = writer;
     }
 
 
     @Override
-    public void GameOver() {
+    public void gameOver() {
         writer.writeLine("com.hangman.Game Over");
     }
 
@@ -25,7 +25,7 @@ public class ConsoleDisplay implements GameOverDisplay, Observer {
         Game game = (Game) o;
         String clueAsString = "";
 
-        for(Character c : game.CurrentClue()) {
+        for(Character c : game.currentClue()) {
             if (c != null) {
                 clueAsString += c + " ";
             } else {

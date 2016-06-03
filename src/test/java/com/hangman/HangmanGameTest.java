@@ -22,156 +22,156 @@ public class HangmanGameTest implements Observer {
     }
 
     @Test
-    public void ItIsNotOverWhenTheMaxGuessesAreNotUsedYet() {
+    public void itIsNotOverWhenTheMaxGuessesAreNotUsedYet() {
         simpleAnswerGenerator.setNextAnswer("ab");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
         for(int i=0; i < HangmanGame.MaxIncorrectGuesses; i++) {
-            assertFalse(game.IsOver());
-            game.Guess('c');
+            assertFalse(game.isOver());
+            game.guess('c');
         }
     }
 
     @Test
-    public void ItIsOverWhenTheMaxGuessesAreUsed() {
+    public void itIsOverWhenTheMaxGuessesAreUsed() {
         simpleAnswerGenerator.setNextAnswer("ab");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
         for(int i=0; i < HangmanGame.MaxIncorrectGuesses; i++) {
-            game.Guess('c');
+            game.guess('c');
         }
 
-        assertTrue(game.IsOver());
+        assertTrue(game.isOver());
     }
 
     @Test
-    public void ItIsOverWhenTheAnswerIsGuessed() {
+    public void itIsOverWhenTheAnswerIsGuessed() {
         simpleAnswerGenerator.setNextAnswer("ab");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('a');
-        game.Guess('b');
+        game.guess('a');
+        game.guess('b');
 
-        assertTrue(game.IsOver());
+        assertTrue(game.isOver());
     }
 
     @Test
-    public void TheAnswerCanBeGuessedInTheWrongOrder() {
+    public void theAnswerCanBeGuessedInTheWrongOrder() {
         simpleAnswerGenerator.setNextAnswer("ab");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('b');
-        game.Guess('a');
+        game.guess('b');
+        game.guess('a');
 
-        assertTrue(game.IsOver());
+        assertTrue(game.isOver());
     }
 
     @Test
-    public void TheAnswerCanBeGuessedWhenThereAreDuplicates() {
+    public void theAnswerCanBeGuessedWhenThereAreDuplicates() {
         simpleAnswerGenerator.setNextAnswer("abbb");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('b');
-        game.Guess('a');
+        game.guess('b');
+        game.guess('a');
 
-        assertTrue(game.IsOver());
+        assertTrue(game.isOver());
     }
 
     @Test
-    public void TheAnswerCanBeGuessedWhenTheWordHasCapitalLetters() {
+    public void theAnswerCanBeGuessedWhenTheWordHasCapitalLetters() {
         simpleAnswerGenerator.setNextAnswer("AAbb");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('b');
-        game.Guess('a');
+        game.guess('b');
+        game.guess('a');
 
-        assertTrue(game.IsOver());
+        assertTrue(game.isOver());
     }
 
     @Test
-    public void TheGameCanTellYouIfYouAreAWinner() {
+    public void theGameCanTellYouIfYouAreAWinner() {
         simpleAnswerGenerator.setNextAnswer("AAbb");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('b');
-        game.Guess('a');
+        game.guess('b');
+        game.guess('a');
 
-        assertTrue(game.IsWinner());
+        assertTrue(game.isWinner());
     }
 
     @Test
-    public void TheCurrentClueStartsAsAListOfNulls() {
+    public void theCurrentClueStartsAsAListOfNulls() {
         simpleAnswerGenerator.setNextAnswer("eric");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        assertEquals(Arrays.asList(null, null, null, null), game.CurrentClue());
+        assertEquals(Arrays.asList(null, null, null, null), game.currentClue());
     }
 
     @Test
-    public void TheCurrentClueGetsACorrectGuess() {
+    public void theCurrentClueGetsACorrectGuess() {
         simpleAnswerGenerator.setNextAnswer("eric");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('e');
+        game.guess('e');
 
-        assertEquals(Arrays.asList('e', null, null, null), game.CurrentClue());
+        assertEquals(Arrays.asList('e', null, null, null), game.currentClue());
     }
 
     @Test
-    public void TheCurrentClueCanHandleMoreThanOneCorrectGuess() {
+    public void theCurrentClueCanHandleMoreThanOneCorrectGuess() {
         simpleAnswerGenerator.setNextAnswer("eric");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('e');
-        game.Guess('i');
+        game.guess('e');
+        game.guess('i');
 
-        assertEquals(Arrays.asList('e', null, 'i', null), game.CurrentClue());
+        assertEquals(Arrays.asList('e', null, 'i', null), game.currentClue());
     }
 
     @Test
-    public void TheCurrentClueAlsoHasRepeatingLetters() {
+    public void theCurrentClueAlsoHasRepeatingLetters() {
         simpleAnswerGenerator.setNextAnswer("jimmy");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('m');
+        game.guess('m');
 
-        assertEquals(Arrays.asList(null, null, 'm', 'm', null), game.CurrentClue());
+        assertEquals(Arrays.asList(null, null, 'm', 'm', null), game.currentClue());
     }
 
     @Test
-    public void CaseIsIrrelevant() {
+    public void caseIsIrrelevant() {
         simpleAnswerGenerator.setNextAnswer("PLEASE");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('p');
+        game.guess('p');
 
-        assertEquals(Arrays.asList('p', null, null, null, null, null), game.CurrentClue());
+        assertEquals(Arrays.asList('p', null, null, null, null, null), game.currentClue());
     }
 
     @Test
-    public void ItSendsNotificationsOnGuesses() {
+    public void itSendsNotificationsOnGuesses() {
         simpleAnswerGenerator.setNextAnswer("PLEASE");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
         game.addObserver(this);
-        game.Guess('c');
+        game.guess('c');
 
         assertSame(observedObject, game);
     }
 
     @Test
-    public void ItReturnsTheGuessCount() {
+    public void itReturnsTheGuessCount() {
         simpleAnswerGenerator.setNextAnswer("PLEASE");
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
-        game.Guess('c');
-        game.Guess('p');
+        game.guess('c');
+        game.guess('p');
 
         assertEquals(2, game.numGuesses());
     }
 
     @Test
-    public void ItIsAbleToGuessAWordLongerThanMaxGuesses() {
+    public void itIsAbleToGuessAWordLongerThanMaxGuesses() {
         String longWord = "";
 
         for (int i = 0; i <= HangmanGame.MaxIncorrectGuesses; i++) {
@@ -180,20 +180,20 @@ public class HangmanGameTest implements Observer {
         }
 
         simpleAnswerGenerator.setNextAnswer(longWord);
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
         for (int i = 0; i < HangmanGame.MaxIncorrectGuesses; i++) {
-            game.Guess((char) ('a' + i));
+            game.guess((char) ('a' + i));
         }
 
-        assertFalse(game.IsOver());
-        game.Guess((char) ('a' + HangmanGame.MaxIncorrectGuesses));
+        assertFalse(game.isOver());
+        game.guess((char) ('a' + HangmanGame.MaxIncorrectGuesses));
 
-        assertTrue(game.IsOver());
+        assertTrue(game.isOver());
     }
 
     @Test
-    public void ItCountsAlreadyGuessedValuesAsWrongGuesses() {
+    public void itCountsAlreadyGuessedValuesAsWrongGuesses() {
         String longWord = "";
 
         for (int i = 0; i <= HangmanGame.MaxIncorrectGuesses; i++) {
@@ -202,16 +202,16 @@ public class HangmanGameTest implements Observer {
         }
 
         simpleAnswerGenerator.setNextAnswer(longWord);
-        game.SetAnswerGenerator(simpleAnswerGenerator);
+        game.setAnswerGenerator(simpleAnswerGenerator);
 
         for (int i = 0; i < HangmanGame.MaxIncorrectGuesses; i++) {
-            game.Guess('a');
+            game.guess('a');
         }
 
-        assertFalse(game.IsOver());
-        game.Guess('a');
+        assertFalse(game.isOver());
+        game.guess('a');
 
-        assertTrue(game.IsOver());
+        assertTrue(game.isOver());
     }
 
     @Override

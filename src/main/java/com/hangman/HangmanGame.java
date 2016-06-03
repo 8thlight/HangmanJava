@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class HangmanGame extends Observable implements Game {
-    public static int MaxIncorrectGuesses = 9;
+class HangmanGame extends Observable implements Game {
+    static int MaxIncorrectGuesses = 9;
     private int incorrectGuesses;
     private List<Character> answer;
     private List<Character> correctGuesses;
     private AnswerGenerator answerGenerator = new RandomAnswerGeneratorFromList();
 
-    public HangmanGame()
+    HangmanGame()
     {
-        correctGuesses = new ArrayList<Character>();
+        correctGuesses = new ArrayList<>();
         incorrectGuesses = 0;
     }
 
     @Override
-    public boolean IsOver()
+    public boolean isOver()
     {
-        return incorrectGuesses >= MaxIncorrectGuesses || IsWinner();
+        return incorrectGuesses >= MaxIncorrectGuesses || isWinner();
     }
 
     @Override
-    public void Guess(char guess)
+    public void guess(char guess)
     {
         if (isIncorrect(guess))
             incorrectGuesses++;
@@ -36,12 +36,12 @@ public class HangmanGame extends Observable implements Game {
     }
 
     @Override
-    public List<Character> CurrentClue()
+    public List<Character> currentClue()
     {
-        List<Character> clue = new ArrayList<Character>();
+        List<Character> clue = new ArrayList<>();
 
-        for (int i = 0; i < Answer().size(); i++) {
-            Character c = Answer().get(i);
+        for (int i = 0; i < answer().size(); i++) {
+            Character c = answer().get(i);
             if (correctGuesses.contains(c))
                 clue.add(c);
             else
@@ -52,9 +52,9 @@ public class HangmanGame extends Observable implements Game {
     }
 
     @Override
-    public boolean IsWinner()
+    public boolean isWinner()
     {
-      return correctGuesses.containsAll(this.Answer());
+      return correctGuesses.containsAll(this.answer());
     }
 
     @Override
@@ -62,17 +62,17 @@ public class HangmanGame extends Observable implements Game {
         return incorrectGuesses + correctGuesses.size();
     }
 
-    public void SetAnswerGenerator(AnswerGenerator answerGenerator) {
+    void setAnswerGenerator(AnswerGenerator answerGenerator) {
         this.answerGenerator = answerGenerator;
     }
 
     private boolean isIncorrect(char guess) {
-        return !this.Answer().contains(guess) || this.correctGuesses.contains(guess);
+        return !this.answer().contains(guess) || this.correctGuesses.contains(guess);
     }
 
-    protected List<Character> Answer() {
+    protected List<Character> answer() {
         if (answer == null) {
-            answer = new ArrayList<Character>();
+            answer = new ArrayList<>();
             for (Character c : answerGenerator.generateAnswer().toLowerCase().toCharArray())
                 answer.add(c);
         }

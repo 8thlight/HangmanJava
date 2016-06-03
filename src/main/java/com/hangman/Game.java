@@ -3,11 +3,9 @@ package com.hangman;
 import java.util.List;
 
 public interface Game {
-    List<Character> CurrentClue();
-
+    List<Character> currentClue();
     int numGuesses();
-
-    public boolean IsOver();
-    void Guess(char guess);
-    public boolean IsWinner();
+    boolean isOver();
+    void guess(char guess);
+    boolean isWinner();
 }

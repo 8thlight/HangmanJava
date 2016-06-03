@@ -13,20 +13,20 @@ public class ConsoleDisplayTest extends Observable implements Game {
     private List<Character> currentClue;
 
     @Test
-    public void OnGameOverItWritesTheGameOver() {
+    public void onGameOverItWritesTheGameOver() {
         FakeWriter writer = new FakeWriter();
         ConsoleDisplay display = new ConsoleDisplay(writer);
 
-        display.GameOver();
+        display.gameOver();
 
-        List<String> expectedLines = new ArrayList<String>();
+        List<String> expectedLines = new ArrayList<>();
         expectedLines.add("com.hangman.Game Over");
 
         assertEquals(expectedLines, writer.writtenLines());
     }
 
     @Test
-    public void OnUpdateOfGameItDisplaysCurrentClue() {
+    public void onUpdateOfGameItDisplaysCurrentClue() {
         FakeWriter writer = new FakeWriter();
         ConsoleDisplay display = new ConsoleDisplay(writer);
 
@@ -40,17 +40,17 @@ public class ConsoleDisplayTest extends Observable implements Game {
     }
 
     @Override
-    public boolean IsOver() {
+    public boolean isOver() {
         return false;
     }
 
     @Override
-    public void Guess(char guess) {
+    public void guess(char guess) {
 
     }
 
     @Override
-    public boolean IsWinner() {
+    public boolean isWinner() {
         return false;
     }
 
@@ -60,7 +60,7 @@ public class ConsoleDisplayTest extends Observable implements Game {
     }
 
     @Override
-    public List<Character> CurrentClue() {
+    public List<Character> currentClue() {
         return currentClue;
     }
 }

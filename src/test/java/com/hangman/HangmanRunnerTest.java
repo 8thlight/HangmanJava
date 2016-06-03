@@ -3,6 +3,7 @@ package com.hangman;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class HangmanRunnerTest {
     }
 
     @Test
-    public void DisplaysGameOverWhenTheGameIsDone() throws Exception {
+    public void displaysGameOverWhenTheGameIsDone() throws Exception {
         game.SetDone();
 
         runner.run();
@@ -36,33 +37,33 @@ public class HangmanRunnerTest {
     }
 
     @Test
-    public void TellsYouIfGameIsAWinner() {
+    public void tellsYouIfGameIsAWinner() {
         game.SetToWinner();
 
         assertTrue(runner.isWinner());
     }
 
     @Test
-    public void ItGetsTheNumberOfGuessesFromTheGame() {
+    public void itGetsTheNumberOfGuessesFromTheGame() {
         game.SetNumGuesses(3);
 
         assertEquals(3, runner.numGuesses());
     }
 
     @Test
-    public void ItPlaysATurnThatCanEndTheGame() throws Exception {
+    public void itPlaysATurnThatCanEndTheGame() throws Exception {
         game.SetLastGuess('z');
-        player.SetGuesses(Arrays.asList('z'));
+        player.SetGuesses(Collections.singletonList('z'));
 
         runner.run();
 
-        assertEquals(Arrays.asList('z'), game.Guesses());
+        assertEquals(Collections.singletonList('z'), game.Guesses());
         assertTrue(display.GameOverDisplayed());
     }
 
     @Test
-    public void ItSendsTheCurrentWordToThePlayer() throws Exception {
-        List<Character> clue = new LinkedList<Character>();
+    public void itSendsTheCurrentWordToThePlayer() throws Exception {
+        List<Character> clue = new LinkedList<>();
         clue.add('_');
 
         game.SetCurrentClue(clue);
@@ -73,7 +74,7 @@ public class HangmanRunnerTest {
     }
 
     @Test
-    public void ItRunsTurnsUntilGameIsOver() throws Exception {
+    public void itRunsTurnsUntilGameIsOver() throws Exception {
         game.SetLastGuess('z');
         player.SetGuesses(Arrays.asList('a', 'z'));
 
@@ -84,7 +85,7 @@ public class HangmanRunnerTest {
     }
 
     @Test
-    public void ItTicksOnEachTurnThroughTheGame() throws Exception {
+    public void itTicksOnEachTurnThroughTheGame() throws Exception {
         game.SetLastGuess('z');
         player.SetGuesses(Arrays.asList('a', 'z'));
 

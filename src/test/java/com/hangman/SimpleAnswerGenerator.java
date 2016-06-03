@@ -1,13 +1,10 @@
 package com.hangman;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class SimpleAnswerGenerator implements AnswerGenerator
+class SimpleAnswerGenerator implements AnswerGenerator
 {
     private String nextAnswer;
 
-    public void setNextAnswer(String nextAnswer) {
+    void setNextAnswer(String nextAnswer) {
         this.nextAnswer = nextAnswer;
     }
 

@@ -1,8 +1,8 @@
 package com.hangman;
 
-public class WordList {
+class WordList {
 
-  public static final String words[] = {
+  static final String words[] = {
             "aboard",
             "accept",
             "accident",
