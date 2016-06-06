@@ -1,5 +1,5 @@
 package com.hangman;
 
-interface AnswerGenerator {
+public interface AnswerGenerator {
     String generateAnswer();
 }

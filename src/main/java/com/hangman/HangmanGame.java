@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-class HangmanGame extends Observable implements Game {
+public class HangmanGame extends Observable implements Game {
     static int MaxIncorrectGuesses = 9;
     private int incorrectGuesses;
     private List<Character> answer;
     private List<Character> correctGuesses;
     private AnswerGenerator answerGenerator = new RandomAnswerGeneratorFromList();
 
-    HangmanGame()
+    public HangmanGame()
     {
         correctGuesses = new ArrayList<>();
         incorrectGuesses = 0;
@@ -62,7 +62,7 @@ class HangmanGame extends Observable implements Game {
         return incorrectGuesses + correctGuesses.size();
     }
 
-    void setAnswerGenerator(AnswerGenerator answerGenerator) {
+    public void setAnswerGenerator(AnswerGenerator answerGenerator) {
         this.answerGenerator = answerGenerator;
     }
 

@@ -1,5 +1,5 @@
 package com.hangman;
 
-interface Ticker {
+public interface Ticker {
     void tick();
 }

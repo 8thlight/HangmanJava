@@ -3,6 +3,10 @@ apply plugin: 'application'
 apply plugin: 'maven'
 
 mainClassName = 'com.hangman.HangmanRunner'
+group = 'Hangman'
+version = '1'
+
+description = """"""
 
 repositories {
   mavenCentral()

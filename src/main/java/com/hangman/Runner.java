@@ -1,6 +1,6 @@
 package com.hangman;
 
-interface Runner {
+public interface Runner {
   void run();
   boolean isWinner();
   int numGuesses();

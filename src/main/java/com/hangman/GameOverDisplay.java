@@ -1,5 +1,5 @@
 package com.hangman;
 
-interface GameOverDisplay {
+public interface GameOverDisplay {
     void gameOver();
 }
