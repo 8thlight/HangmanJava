@@ -1,14 +1,20 @@
 package com.hangman.players;
 
 import org.junit.Test;
+import org.junit.Before;
 import java.util.Arrays;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class YourPlayerTest {
+    private YourPlayer player;
+
+    @Before
+    public void setUp() {
+        player = new YourPlayer();
+    }
+
     @Test
     public void guessesEWhenThereAreNoSuccessfulCharactersGuessedYet() {
-        YourPlayer player = new YourPlayer();
-
         char guess = player.getGuess(Arrays.asList(null, null, null));
 
         assertEquals('e', guess);
@@ -16,19 +22,15 @@ public class YourPlayerTest {
 
     @Test
     public void guessesEWhenThereAreSuccessfulCharactersGuessedThatAreNotE() {
-        YourPlayer player = new YourPlayer();
-
         char guess = player.getGuess(Arrays.asList('m', null, 'n'));
 
         assertEquals('e', guess);
     }
 
     @Test
-    public void guessesEWhenEIsInTheClue() {
-        YourPlayer player = new YourPlayer();
-
+    public void guessesAWhenEIsInTheClue() {
         char guess = player.getGuess(Arrays.asList(null, 'e', null));
 
-        assertEquals('e', guess);
+        assertEquals('a', guess);
     }
 }
