@@ -7,6 +7,6 @@ import java.util.List;
 public class YourPlayer implements Player {
     @Override
     public char getGuess(List<Character> currentClue) {
-        return 'a';
+        return 'e';
     }
 }

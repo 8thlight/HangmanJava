@@ -6,29 +6,29 @@ import static org.junit.Assert.assertEquals;
 
 public class YourPlayerTest {
     @Test
-    public void guessesAWhenThereAreNoSuccessfulCharactersGuessedYet() {
+    public void guessesEWhenThereAreNoSuccessfulCharactersGuessedYet() {
         YourPlayer player = new YourPlayer();
 
         char guess = player.getGuess(Arrays.asList(null, null, null));
 
-        assertEquals('a', guess);
+        assertEquals('e', guess);
     }
 
     @Test
-    public void guessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
+    public void guessesEWhenThereAreSuccessfulCharactersGuessedThatAreNotE() {
         YourPlayer player = new YourPlayer();
 
         char guess = player.getGuess(Arrays.asList('m', null, 'n'));
 
-        assertEquals('a', guess);
+        assertEquals('e', guess);
     }
 
     @Test
-    public void guessesAWhenAIsThereAreAsInTheClueAsWell() {
+    public void guessesEWhenEIsInTheClue() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.getGuess(Arrays.asList(null, 'a', null));
+        char guess = player.getGuess(Arrays.asList(null, 'e', null));
 
-        assertEquals('a', guess);
+        assertEquals('e', guess);
     }
 }
