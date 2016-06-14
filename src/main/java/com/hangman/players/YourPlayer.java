@@ -31,8 +31,7 @@ public class YourPlayer implements Player {
         return guess;
     }
 
-    /*
-    private char getNextCharacterAlternative() {
+    private char getNextCharacter() {
         Character next = 'e';
         for (Character character : highFrequencyCharSet) {
             if (!guessedChars.contains(character)) {
@@ -41,13 +40,14 @@ public class YourPlayer implements Player {
             }
         }
         return next;
-    }*/
+    }
 
+    /*
     private Character getNextCharacter() {
         Character next = highFrequencyCharSet.get(new Random().nextInt(getHighFrequencyCharSetSize()));
         while (guessedChars.contains(next)) {
             next = getNextCharacter();
         }
         return next;
-    }
+    }*/
 }
