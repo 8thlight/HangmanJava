@@ -1,34 +1,30 @@
 package com.hangman.players;
 
 import org.junit.Test;
+
 import java.util.Arrays;
-import static org.junit.Assert.assertEquals;
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
 
 public class YourPlayerTest {
     @Test
-    public void guessesAWhenThereAreNoSuccessfulCharactersGuessedYet() {
+    public void makesSuccessfulGuess() {
         YourPlayer player = new YourPlayer();
 
         char guess = player.getGuess(Arrays.asList(null, null, null));
 
-        assertEquals('a', guess);
+        assertTrue(Character.valueOf(guess) != null);
     }
 
     @Test
-    public void guessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
+    public void guessesRandomLetterWhenAIsThereAreAsInTheClueAsWell() {
         YourPlayer player = new YourPlayer();
+        List<Character> clues = Arrays.asList('x', 'b', 'g', 'f', 'i');
 
-        char guess = player.getGuess(Arrays.asList('m', null, 'n'));
-
-        assertEquals('a', guess);
-    }
-
-    @Test
-    public void guessesAWhenAIsThereAreAsInTheClueAsWell() {
-        YourPlayer player = new YourPlayer();
-
-        char guess = player.getGuess(Arrays.asList(null, 'a', null));
-
-        assertEquals('a', guess);
+        clues.stream().forEach(c -> {
+            char guess = player.getGuess(Arrays.asList(null, null, c));
+            assertTrue(guess != c);
+        });
     }
 }
