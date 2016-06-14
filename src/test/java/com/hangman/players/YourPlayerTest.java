@@ -1,8 +1,13 @@
 package com.hangman.players;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class YourPlayerTest {
     @Test
@@ -11,24 +16,20 @@ public class YourPlayerTest {
 
         char guess = player.getGuess(Arrays.asList(null, null, null));
 
-        assertEquals('a', guess);
+        assertEquals('e', guess);
     }
 
     @Test
-    public void guessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
+    public void guessesLetterNotInCurrentClueList() {
         YourPlayer player = new YourPlayer();
 
         char guess = player.getGuess(Arrays.asList('m', null, 'n'));
 
-        assertEquals('a', guess);
+        boolean guessNotInList = assertGuessNotInList(guess, Arrays.asList('m', null, 'n'));
+        assertEquals(true, guessNotInList);
     }
 
-    @Test
-    public void guessesAWhenAIsThereAreAsInTheClueAsWell() {
-        YourPlayer player = new YourPlayer();
-
-        char guess = player.getGuess(Arrays.asList(null, 'a', null));
-
-        assertEquals('a', guess);
+    static boolean assertGuessNotInList(char guess, List<Character> currentClueList) {
+        return (!(currentClueList.contains(guess)));
     }
 }
