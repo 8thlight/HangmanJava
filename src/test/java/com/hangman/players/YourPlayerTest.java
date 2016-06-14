@@ -3,6 +3,7 @@ package com.hangman.players;
 import org.junit.Test;
 import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class YourPlayerTest {
     @Test
@@ -11,24 +12,26 @@ public class YourPlayerTest {
 
         char guess = player.getGuess(Arrays.asList(null, null, null));
 
-        assertEquals('a', guess);
+        assertEquals('e', guess);
     }
 
     @Test
     public void guessesAWhenThereAreSuccessfulCharactersGuessedThatAreNotA() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.getGuess(Arrays.asList('m', null, 'n'));
+        char guess = player.getGuess(Arrays.asList('e', null, 't'));
 
         assertEquals('a', guess);
     }
 
     @Test
-    public void guessesAWhenAIsThereAreAsInTheClueAsWell() {
+    public void guessesAWhenEIsThereAreAsInTheClueAsWell() {
         YourPlayer player = new YourPlayer();
 
-        char guess = player.getGuess(Arrays.asList(null, 'a', null));
+        char guess = player.getGuess(Arrays.asList(null, 'e', null));
 
-        assertEquals('a', guess);
+        assertNotEquals('e', guess);
     }
+
+
 }
